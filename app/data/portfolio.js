@@ -5,13 +5,28 @@ export const SKILLS = [
     category: "Frontend",
     icon: "◈",
     color: "#38bdf8",
-    items: ["React.js", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Redux", "HTML5 / CSS3"],
+    items: [
+      "React.js",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Redux",
+      "HTML5 / CSS3",
+    ],
   },
   {
     category: "Backend",
     icon: "◉",
     color: "#a78bfa",
-    items: ["Node.js", "Express.js", "FastAPI", "REST APIs", "JWT / OAuth", "CI/CD Pipelines"],
+    items: [
+      "Node.js",
+      "Express.js",
+      "FastAPI",
+      "REST APIs",
+      "JWT / OAuth",
+      "CI/CD Pipelines",
+    ],
   },
   {
     category: "Databases",
@@ -38,13 +53,24 @@ export const SKILLS = [
     category: "Tools & DevOps",
     icon: "◑",
     color: "#f472b6",
-    items: ["Git & GitHub", "Postman", "Vercel", "Docker (basics)", "Agile / Scrum"],
+    items: [
+      "Git & GitHub",
+      "Postman",
+      "Vercel",
+      "Docker (basics)",
+      "Agile / Scrum",
+    ],
   },
   {
     category: "Soft Skills",
     icon: "◐",
     color: "#fbbf24",
-    items: ["Problem Solving", "Team Collaboration", "Clear Communication", "Time Management"],
+    items: [
+      "Problem Solving",
+      "Team Collaboration",
+      "Clear Communication",
+      "Time Management",
+    ],
   },
 ];
 
@@ -52,7 +78,7 @@ export const PROJECTS = [
   {
     num: "01",
     name: "ResumeAI",
-    badge: "FYP · In Progress",
+    // badge: "FYP · In Progress",
     tagline: "AI-powered resume & career SaaS platform",
     desc: "A full-stack SaaS platform built as a Final Year Project — delivering intelligent resume tools powered by NLP, LLMs, and semantic search. Designed to help job seekers land roles faster with data-driven, explainable feedback.",
     highlights: [
@@ -94,7 +120,15 @@ export const PROJECTS = [
       "30% performance improvement through Redux state management",
       "Fully responsive UI with dark/light mode toggle",
     ],
-    tech: ["Next.js 15", "Node.js", "PostgreSQL", "Prisma ORM", "Tailwind CSS", "Redux", "JWT Auth"],
+    tech: [
+      "Next.js 15",
+      "Node.js",
+      "PostgreSQL",
+      "Prisma ORM",
+      "Tailwind CSS",
+      "Redux",
+      "JWT Auth",
+    ],
     github: "https://github.com/AbdulSaboor-git/Invenzo",
     live: "https://invenzo.vercel.app",
     featured: true,
@@ -176,13 +210,32 @@ export const ABOUT_INFO = [
   { key: "Location", value: "Lahore, PK" },
   { key: "Degree", value: "BSCS (Hons.) Graduate" },
   { key: "GPA", value: "3.39 / 4.00" },
-  { key: "GitHub", value: "AbdulSaboor-git", link: "https://github.com/AbdulSaboor-git" },
-  { key: "LinkedIn", value: "abdulsaboor-in", link: "https://linkedin.com/in/abdulsaboor-in" },
+  {
+    key: "GitHub",
+    value: "AbdulSaboor-git",
+    link: "https://github.com/AbdulSaboor-git",
+  },
+  {
+    key: "LinkedIn",
+    value: "abdulsaboor-in",
+    link: "https://linkedin.com/in/abdulsaboor-in",
+  },
 ];
 
 export const CONTACT_LINKS = [
-  { label: "Email", value: "abdulsaboorcontact@gmail.com", href: "mailto:abdulsaboorcontact@gmail.com" },
-  { label: "GitHub", value: "github.com/AbdulSaboor-git", href: "https://github.com/AbdulSaboor-git" },
-  { label: "LinkedIn", value: "linkedin.com/in/abdulsaboor-in", href: "https://linkedin.com/in/abdulsaboor-in" },
-  { label: "Phone / WhatsApp", value: "+92 303 991 0747", href: "tel:+923039910747" },
+  {
+    label: "Email",
+    value: "abdulsaboorcontact@gmail.com",
+    href: "mailto:abdulsaboorcontact@gmail.com",
+  },
+  {
+    label: "GitHub",
+    value: "github.com/AbdulSaboor-git",
+    href: "https://github.com/AbdulSaboor-git",
+  },
+  {
+    label: "LinkedIn",
+    value: "linkedin.com/in/abdulsaboor-in",
+    href: "https://linkedin.com/in/abdulsaboor-in",
+  },
 ];

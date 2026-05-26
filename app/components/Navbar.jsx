@@ -35,9 +35,9 @@ export default function Navbar() {
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 h-[68px] flex items-center justify-between
+      className={`fixed top-0 left-0 right-0 z-50 h-17 flex items-center justify-between
         px-[clamp(20px,5vw,72px)] transition-all duration-400
-        ${scrolled ? "bg-[#070b14]/90 backdrop-blur-xl border-b border-white/[0.06]" : "bg-transparent border-b border-transparent"}`}
+        ${scrolled ? "bg-[#070b14]/50 backdrop-blur-xl border-b border-white/6" : "bg-transparent border-b border-transparent"}`}
     >
       {/* Logo */}
       <span className="font-display text-[18px] font-extrabold tracking-tight text-slate-100">

@@ -11,7 +11,10 @@ export default function Projects() {
   const [modal, setModal] = useState(null);
 
   return (
-    <section id="projects" className="px-[clamp(20px,6vw,80px)] py-24 border-t border-white/[0.05]">
+    <section
+      id="projects"
+      className="px-[clamp(20px,6vw,80px)] py-24 border-t border-white/[0.05]"
+    >
       <div className="max-w-[1140px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -26,7 +29,7 @@ export default function Projects() {
                 Work I&apos;m <span className="text-sky-400">proud of</span>
               </>
             }
-            subtitle="From AI-powered SaaS platforms to polished client sites — each project is built with intent, care, and an eye for production quality."
+            subtitle="From AI-powered SaaS platforms to polished client sites, each project is built with intent, care, and an eye for production quality."
           />
         </motion.div>
 
@@ -41,7 +44,10 @@ export default function Projects() {
               transition={{ duration: 0.5, delay: i * 0.06 }}
               className="h-full"
             >
-              <ProjectCard project={project} onClick={() => setModal(project)} />
+              <ProjectCard
+                project={project}
+                onClick={() => setModal(project)}
+              />
             </motion.div>
           ))}
         </div>
@@ -68,7 +74,9 @@ export default function Projects() {
 
       {/* Modal */}
       <AnimatePresence>
-        {modal && <ProjectModal project={modal} onClose={() => setModal(null)} />}
+        {modal && (
+          <ProjectModal project={modal} onClose={() => setModal(null)} />
+        )}
       </AnimatePresence>
     </section>
   );

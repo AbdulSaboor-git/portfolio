@@ -7,7 +7,10 @@ import { SKILLS } from "../data/portfolio";
 
 export default function Skills() {
   return (
-    <section id="skills" className="px-[clamp(20px,6vw,80px)] py-24 border-t border-white/[0.05]">
+    <section
+      id="skills"
+      className="px-[clamp(20px,6vw,80px)] py-24 border-t border-white/[0.05]"
+    >
       <div className="max-w-[1140px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -42,14 +45,18 @@ export default function Skills() {
               >
                 {/* Card top accent line */}
                 <div
-                  className="absolute top-0 left-0 right-0 h-[2px] rounded-t-2xl opacity-0
+                  className="absolute -top-6 -left-6 right-0 h-[2px] rounded-t-2xl opacity-0
                     group-hover:opacity-100 transition-opacity duration-300"
-                  style={{ background: `linear-gradient(90deg, ${sk.color}, transparent)` }}
+                  style={{
+                    background: `linear-gradient(90deg, ${sk.color}, transparent)`,
+                  }}
                 />
 
                 {/* Category header */}
                 <div className="flex items-center gap-2.5 mb-4">
-                  <span className="text-[15px]" style={{ color: sk.color }}>{sk.icon}</span>
+                  <span className="text-[15px]" style={{ color: sk.color }}>
+                    {sk.icon}
+                  </span>
                   <span className="font-display text-[13px] font-bold text-slate-100 tracking-tight">
                     {sk.category}
                   </span>
