@@ -7,23 +7,16 @@ import SectionHeader from "./SectionHeader";
 import { CONTACT_LINKS } from "../data/portfolio";
 
 export default function Contact() {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
+  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [sent, setSent] = useState(false);
 
   const handleSubmit = () => {
     if (!form.name || !form.email || !form.message) return;
-    const sub = encodeURIComponent(form.subject || "Portfolio Inquiry");
+    const sub  = encodeURIComponent(form.subject || "Portfolio Inquiry");
     const body = encodeURIComponent(
-      `Hi Abdul,\n\n${form.message}\n\n— ${form.name}\n${form.email}`,
+      `Hi Abdul,\n\n${form.message}\n\n— ${form.name}\n${form.email}`
     );
-    window.open(
-      `mailto:abdulsaboorcontact@gmail.com?subject=${sub}&body=${body}`,
-    );
+    window.open(`mailto:abdulsaboorcontact@gmail.com?subject=${sub}&body=${body}`);
     setSent(true);
     setTimeout(() => setSent(false), 4000);
   };
@@ -36,7 +29,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="px-[clamp(20px,6vw,80px)] py-28 border-t border-white/[0.04]"
+      className="px-[clamp(20px,6vw,80px)] py-16 sm:py-20 md:py-28 border-t border-white/[0.04]"
     >
       <div className="max-w-[1100px] mx-auto">
         <motion.div
@@ -58,26 +51,22 @@ export default function Contact() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
             {/* Form */}
             <div className="flex flex-col gap-4">
-              <div className="grid grid-cols-2 gap-4">
+              {/* ✅ Fix: grid-cols-1 on mobile, 2 on sm+ */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
-                  { label: "Name", key: "name", placeholder: "Abdul Saboor" },
-                  {
-                    label: "Email",
-                    key: "email",
-                    placeholder: "hello@email.com",
-                  },
+                  { label: "Name",  key: "name",  placeholder: "Abdul Saboor",    type: "text" },
+                  { label: "Email", key: "email", placeholder: "hello@email.com", type: "email" },
                 ].map((f) => (
                   <div key={f.key} className="flex flex-col gap-1.5">
                     <label className="text-[11px] font-mono text-slate-600 tracking-widest uppercase">
                       {f.label}
                     </label>
                     <input
+                      type={f.type}
                       className={inputCls}
                       placeholder={f.placeholder}
                       value={form[f.key]}
-                      onChange={(e) =>
-                        setForm({ ...form, [f.key]: e.target.value })
-                      }
+                      onChange={(e) => setForm({ ...form, [f.key]: e.target.value })}
                     />
                   </div>
                 ))}
@@ -91,9 +80,7 @@ export default function Contact() {
                   className={inputCls}
                   placeholder="Project inquiry"
                   value={form.subject}
-                  onChange={(e) =>
-                    setForm({ ...form, subject: e.target.value })
-                  }
+                  onChange={(e) => setForm({ ...form, subject: e.target.value })}
                 />
               </div>
 
@@ -105,15 +92,14 @@ export default function Contact() {
                   className={`${inputCls} resize-y min-h-[130px]`}
                   placeholder="Tell me about your project..."
                   value={form.message}
-                  onChange={(e) =>
-                    setForm({ ...form, message: e.target.value })
-                  }
+                  onChange={(e) => setForm({ ...form, message: e.target.value })}
                 />
               </div>
 
               <button
                 onClick={handleSubmit}
                 className={`w-full py-3.5 rounded-xl text-[14px] font-bold transition-all duration-300
+                  active:scale-[0.98]
                   ${
                     sent
                       ? "bg-emerald-400 text-[--bg]"
@@ -148,13 +134,12 @@ export default function Contact() {
                       <div className="text-[10px] font-mono text-slate-700 uppercase tracking-widest mb-1">
                         {c.label}
                       </div>
-                      <div className="text-[14px] font-medium text-slate-200">
-                        {c.value}
-                      </div>
+                      <div className="text-[14px] font-medium text-slate-200">{c.value}</div>
                     </div>
                     <span
                       className="text-slate-700 group-hover:text-[--accent]
-                      group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200 text-lg"
+                        group-hover:translate-x-0.5 group-hover:-translate-y-0.5
+                        transition-all duration-200 text-lg"
                     >
                       ↗
                     </span>

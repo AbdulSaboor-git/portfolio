@@ -11,7 +11,7 @@ export default function Projects() {
   const [modal, setModal] = useState(null);
 
   return (
-    <section id="projects" className="px-[clamp(20px,6vw,80px)] py-28 border-t border-white/[0.04]">
+    <section id="projects" className="px-[clamp(20px,6vw,80px)] py-16 sm:py-20 md:py-28 border-t border-white/[0.04]">
       <div className="max-w-[1100px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}

@@ -36,7 +36,6 @@ function pct(p, total) {
 }
 
 export default function Skills() {
-  // hover-driven — default to first node so panel is never empty
   const [active, setActive] = useState(0);
   const containerRef = useRef(null);
   const { w, h } = useElementSize(containerRef);
@@ -44,7 +43,7 @@ export default function Skills() {
   const activeSkill = SKILLS[active];
 
   return (
-    <section id="skills" className="px-[clamp(20px,6vw,80px)] py-28 border-t border-white/[0.04]">
+    <section id="skills" className="px-[clamp(20px,6vw,80px)] py-16 sm:py-20 md:py-28 border-t border-white/[0.04]">
       <div className="max-w-[1100px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -54,7 +53,13 @@ export default function Skills() {
         >
           <SectionHeader
             title={<>The tools I <span className="text-[--accent]">live in</span></>}
-            subtitle="Hover any node to explore the stack."
+            subtitle={
+              <>
+                <span className="hidden sm:inline">Hover</span>
+                <span className="sm:hidden">Tap</span>
+                {" "}any node to explore the stack.
+              </>
+            }
           />
         </motion.div>
 
@@ -95,7 +100,7 @@ export default function Skills() {
               </svg>
             )}
 
-            {/* Nodes — hover triggers active */}
+            {/* Nodes — hover AND click trigger active */}
             {SKILLS.map((sk, i) => {
               const pos = POSITIONS[i];
               const isActive = active === i;
@@ -107,10 +112,18 @@ export default function Skills() {
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08, duration: 0.5, type: "spring", stiffness: 260, damping: 20 }}
                   onMouseEnter={() => setActive(i)}
-                  className="absolute flex flex-col items-center gap-1.5 cursor-default
+                  onClick={() => setActive(i)}
+                  className="absolute flex flex-col items-center gap-1.5 cursor-pointer
                     -translate-x-1/2 -translate-y-1/2 group"
                   style={{ left: pos.cx, top: pos.cy }}
+                  role="button"
+                  aria-pressed={isActive}
+                  aria-label={`${sk.category} skills`}
                 >
+                  {/* Hit-area expander (invisible, makes tapping easier on mobile) */}
+                  <div className="absolute w-16 h-16 -translate-x-1/2 -translate-y-1/2
+                    left-1/2 top-1/2 rounded-full" />
+
                   {/* Orb */}
                   <motion.div
                     animate={{
@@ -121,7 +134,7 @@ export default function Skills() {
                     }}
                     transition={{ duration: 0.25 }}
                     className="w-12 h-12 rounded-full flex items-center justify-center text-xl
-                      border-2 transition-colors duration-250"
+                      border-2 transition-colors duration-250 relative z-10"
                     style={{
                       background: isActive ? `${sk.color}16` : "rgba(255,255,255,0.03)",
                       borderColor: isActive ? sk.color : "rgba(255,255,255,0.09)",
@@ -133,7 +146,7 @@ export default function Skills() {
                   {/* Label */}
                   <span
                     className="text-[10px] font-mono font-medium tracking-wide whitespace-nowrap
-                      transition-colors duration-200"
+                      transition-colors duration-200 relative z-10"
                     style={{ color: isActive ? sk.color : "rgba(148,163,184,0.6)" }}
                   >
                     {sk.category}
@@ -153,7 +166,7 @@ export default function Skills() {
             })}
           </div>
 
-          {/* ── Info panel — always populated (defaults to index 0) ── */}
+          {/* ── Info panel ── */}
           <div className="lg:sticky lg:top-28">
             <AnimatePresence mode="wait">
               <motion.div
