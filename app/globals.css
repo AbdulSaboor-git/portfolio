@@ -2,8 +2,12 @@
 
 @layer base {
   :root {
-    --font-display: "Space Grotesk", sans-serif;
-    --font-body: "Inter", sans-serif;
+    --font-display: "Syne", sans-serif;
+    --font-body: "DM Sans", sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
+    --bg: #06080f;
+    --accent: #38bdf8;
+    --accent-2: #a78bfa;
   }
 
   * {
@@ -17,9 +21,9 @@
   }
 
   body {
-    background: #070b14;
+    background: var(--bg);
     color: #f1f5f9;
-    font-family: "Inter", sans-serif;
+    font-family: "DM Sans", sans-serif;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
   }
@@ -30,10 +34,10 @@
   }
 
   ::-webkit-scrollbar {
-    width: 4px;
+    width: 3px;
   }
   ::-webkit-scrollbar-track {
-    background: #070b14;
+    background: var(--bg);
   }
   ::-webkit-scrollbar-thumb {
     background: #1e3a5f;
@@ -43,12 +47,69 @@
 
 @layer utilities {
   .font-display {
-    font-family: "Space Grotesk", sans-serif;
+    font-family: "Syne", sans-serif;
   }
   .font-body {
-    font-family: "Inter", sans-serif;
+    font-family: "DM Sans", sans-serif;
+  }
+  .font-mono {
+    font-family: "JetBrains Mono", monospace;
+  }
+  .font-serif {
+    font-family: "Playfair Display", Georgia, serif;
   }
 
+  /* ── DOT GRID: only visible in a halo around the cursor ── */
+  .dot-grid {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: radial-gradient(
+      rgba(255, 255, 255, 0.22) 1px,
+      transparent 1px
+    );
+    background-size: 26px 26px;
+    /* Reveal only near cursor — vars set on :root by CursorGlow */
+    -webkit-mask-image: radial-gradient(
+      circle 220px at var(--cx, -9999px) var(--cy, -9999px),
+      black 0%,
+      rgba(0, 0, 0, 0.6) 40%,
+      transparent 100%
+    );
+    mask-image: radial-gradient(
+      circle 220px at var(--cx, -9999px) var(--cy, -9999px),
+      black 0%,
+      rgba(0, 0, 0, 0.6) 40%,
+      transparent 100%
+    );
+    transition:
+      -webkit-mask-position 0.05s linear,
+      mask-position 0.05s linear;
+  }
+
+  /* ── CURSOR GLOW ── */
+  .cursor-glow {
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba(56, 189, 248, 0.09) 0%,
+      rgba(167, 139, 250, 0.04) 40%,
+      transparent 68%
+    );
+    transform: translate(var(--cx, -999px), var(--cy, -999px))
+      translate(-50%, -50%);
+    transition: transform 0.06s linear;
+    z-index: 1;
+  }
+
+  /* ── ANIMATIONS ── */
   .animate-blink {
     animation: blink 1s step-end infinite;
   }
@@ -62,10 +123,61 @@
     }
   }
 
+  .animate-marquee {
+    animation: marquee 24s linear infinite;
+  }
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
   .line-clamp-3 {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+
+  /* constellation canvas */
+  .constellation-canvas {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  /* ── MOBILE NAV PANEL (old.zip behaviour, panel from right) ── */
+  .mobile-nav-panel {
+    position: fixed;
+    /* Align with hamburger button on the right */
+    top: 10px;
+    right: 0;
+    z-index: 50;
+    width: 190px;
+    padding: 12px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    /* Offscreen right — mirrors old.zip margin-right: -170px */
+    transform: translateX(73%);
+    transition:
+      transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+      background-color 0.3s ease,
+      backdrop-filter 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+  .mobile-nav-panel.show {
+    transform: translateX(-12px);
+    top: 60px;
+    background-color: rgba(6, 8, 15, 0.82);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.07),
+      0 8px 32px rgba(0, 0, 0, 0.55);
   }
 }

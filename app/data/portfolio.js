@@ -105,7 +105,19 @@ export const PROJECTS = [
     github: null,
     live: null,
     featured: true,
-    images: [],
+    images: [
+      "screenshots/resumeai/home-page.png",
+      "screenshots/resumeai/builder.png",
+      "screenshots/resumeai/parser.png",
+      "screenshots/resumeai/bulk-parser.png",
+      "screenshots/resumeai/editor.png",
+      "screenshots/resumeai/optimizer.png",
+      "screenshots/resumeai/optimizer-comparison.png",
+      "screenshots/resumeai/ATS.png",
+      "screenshots/resumeai/skill-gap-analyzer.png",
+      "screenshots/resumeai/job-search.png",
+      "screenshots/resumeai/session-manager.png",
+    ],
   },
   {
     num: "02",
@@ -200,7 +212,7 @@ export const PROJECTS = [
     github: "https://github.com/AbdulSaboor-git/Snake-Game",
     live: null,
     featured: false,
-    images: [],
+    images: ["screenshots/snake-game/snake-game.png"],
   },
 ];
 

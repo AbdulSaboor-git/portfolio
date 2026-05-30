@@ -17,7 +17,11 @@ export default function ImageCarousel({ images }) {
 
   const slideVariants = {
     enter: (d) => ({ x: d > 0 ? "100%" : "-100%", opacity: 0 }),
-    center: { x: 0, opacity: 1, transition: { duration: 0.38, ease: [0.22, 1, 0.36, 1] } },
+    center: {
+      x: 0,
+      opacity: 1,
+      transition: { duration: 0.38, ease: [0.22, 1, 0.36, 1] },
+    },
     exit: (d) => ({
       x: d > 0 ? "-100%" : "100%",
       opacity: 0,
@@ -26,7 +30,7 @@ export default function ImageCarousel({ images }) {
   };
 
   return (
-    <div className="relative w-full rounded-xl overflow-hidden bg-[#0a0e1a] aspect-video mb-5">
+    <div className="relative w-full  rounded-xl overflow-hidden bg-white aspect-video mb-5">
       <AnimatePresence custom={dir} initial={false}>
         <motion.img
           key={idx}
@@ -36,7 +40,7 @@ export default function ImageCarousel({ images }) {
           initial="enter"
           animate="center"
           exit="exit"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 rounded-xl w-full h-full object-contain object-center"
           alt={`Screenshot ${idx + 1}`}
         />
       </AnimatePresence>
@@ -65,9 +69,12 @@ export default function ImageCarousel({ images }) {
             {images.map((_, i) => (
               <button
                 key={i}
-                onClick={() => { setDir(i > idx ? 1 : -1); setIdx(i); }}
-                className={`h-1.5 rounded-full transition-all duration-300
-                  ${i === idx ? "w-5 bg-sky-400" : "w-1.5 bg-white/30 hover:bg-white/50"}`}
+                onClick={() => {
+                  setDir(i > idx ? 1 : -1);
+                  setIdx(i);
+                }}
+                className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer
+                  ${i === idx ? "w-5 bg-sky-400" : "w-1.5 bg-sky-400/10 border border-sky-400/50 hover:bg-white/50"}`}
               />
             ))}
           </div>

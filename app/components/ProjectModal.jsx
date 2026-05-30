@@ -27,8 +27,8 @@ export default function ProjectModal({ project, onClose }) {
         onClick={(e) => {
           if (e.target === e.currentTarget) onClose();
         }}
-        className="fixed inset-0 z-[100] flex items-center justify-center p-5
-          bg-black/80 backdrop-blur-xl"
+        className="fixed inset-0 flex items-center justify-center p-5
+          bg-black/80 backdrop-blur-xl z-[100]"
       >
         <motion.div
           initial={{ opacity: 0, scale: 0.94, y: 24 }}
@@ -50,7 +50,7 @@ export default function ProjectModal({ project, onClose }) {
             </button>
           </div>
 
-          <div className="px-8 pb-8 pt-1">
+          <div className="px-8 pb-8 pt-1 ">
             {/* Image Carousel (if images exist) */}
             {project.images?.length > 0 && (
               <ImageCarousel images={project.images} />
@@ -115,8 +115,9 @@ export default function ProjectModal({ project, onClose }) {
               {project.tech.map((t) => (
                 <span
                   key={t}
-                  className="text-[11px] font-semibold text-slate-100
-                  bg-white/[0.06] border border-white/10 rounded-md px-3 py-1"
+                  className="text-[11px] font-semibold text-slate-100 cursor-default
+                  bg-white/[0.06] border hover:bg-sky-200/10 transition-all duration-200
+                   border-white/10 rounded-md px-3 py-1"
                 >
                   {t}
                 </span>

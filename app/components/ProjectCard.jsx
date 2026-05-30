@@ -10,7 +10,7 @@ export default function ProjectCard({ project, onClick }) {
         project.featured ? "rgba(56,189,248,0.14)" : "rgba(56,189,248,0.08)"
       }
       className={`group p-7 rounded-2xl border h-full
-        hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(0,0,0,0.45)]
+       hover:shadow-[0_20px_60px_rgba(0,0,0,0.45)]
         transition-all duration-300
         ${
           project.featured
@@ -27,7 +27,7 @@ export default function ProjectCard({ project, onClick }) {
           </span>
           <span
             className="text-[15px] text-slate-600 group-hover:text-sky-400 group-hover:translate-x-0.5
-          group-hover:-translate-y-0.5 transition-all duration-200"
+          group-hover:-translate-y-0.5 transition-all duration-300"
           >
             ↗
           </span>
@@ -36,12 +36,12 @@ export default function ProjectCard({ project, onClick }) {
         {/* Name + tagline */}
         <div>
           <h3
-            className="font-display text-[19px] font-extrabold text-slate-100 group-hover:text-sky-400
-          tracking-tight leading-snug mb-1 transition-colors duration-200"
+            className="font-serif text-[19px] font-semibold text-slate-100 
+          tracking-normal leading-snug mb-1 transition-colors duration-300"
           >
             {project.name}
           </h3>
-          <p className="text-[12px] text-sky-400/80 group-hover:text-sky-300/80 transition-all duration-200 font-medium">
+          <p className="text-[12px] text-sky-400/80 group-hover:text-sky-300/80 transition-all duration-300 font-medium">
             {project.tagline}
           </p>
         </div>
@@ -57,7 +57,7 @@ export default function ProjectCard({ project, onClick }) {
         )}
 
         {/* Description snippet */}
-        <p className="text-[13px] text-slate-500 group-hover:text-slate-400 transition-colors duration-200 leading-[1.75] flex-1 line-clamp-3">
+        <p className="text-[13px] text-slate-500 group-hover:text-slate-400 transition-colors duration-300 leading-[1.75] flex-1 line-clamp-3">
           {project.desc}
         </p>
 
@@ -66,14 +66,14 @@ export default function ProjectCard({ project, onClick }) {
           {project.tech.slice(0, 4).map((t) => (
             <span
               key={t}
-              className="text-[10px] font-semibold text-slate-600 group-hover:text-slate-400 transition-colors duration-200
+              className="text-[10px] font-semibold text-slate-600 group-hover:text-slate-400 transition-colors duration-300
             bg-white/[0.04] border border-white/[0.07] rounded px-2 py-0.5"
             >
               {t}
             </span>
           ))}
           {project.tech.length > 4 && (
-            <span className="text-[10px] font-semibold text-slate-700 group-hover:text-slate-500 transition-colors duration-200 px-2 py-0.5">
+            <span className="text-[10px] font-semibold text-slate-700 group-hover:text-slate-500 transition-colors duration-300 px-2 py-0.5">
               +{project.tech.length - 4} more
             </span>
           )}
