@@ -30,7 +30,7 @@ export default function ImageCarousel({ images }) {
   };
 
   return (
-    <div className="relative w-full  rounded-xl overflow-hidden bg-white aspect-video mb-5">
+    <div className="relative w-full  rounded-xl overflow-hidden bg-black aspect-video mb-5">
       <AnimatePresence custom={dir} initial={false}>
         <motion.img
           key={idx}

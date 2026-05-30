@@ -162,7 +162,9 @@ export const PROJECTS = [
     github: "https://github.com/AbdulSaboor-git/royal-aseel-farms",
     live: "https://royal-aseel-farms.vercel.app",
     featured: false,
-    images: [],
+    images: [
+      // "screenshots/royal-aseel-farms/raf.png"
+    ],
   },
   {
     num: "04",
@@ -179,7 +181,10 @@ export const PROJECTS = [
     github: "https://github.com/AbdulSaboor-git/3p-solar-solutions",
     live: "https://solarva.vercel.app",
     featured: false,
-    images: [],
+    images: [
+      "screenshots/3p-solar/home.png",
+      "screenshots/3p-solar/services.png",
+    ],
   },
   {
     num: "05",
@@ -195,7 +200,11 @@ export const PROJECTS = [
     github: "https://github.com/AbdulSaboor-git/calmify",
     live: null,
     featured: false,
-    images: [],
+    images: [
+      "screenshots/calmify/1.png",
+      "screenshots/calmify/2.png",
+      "screenshots/calmify/3.png",
+    ],
   },
   {
     num: "06",
