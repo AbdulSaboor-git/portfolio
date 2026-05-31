@@ -52,7 +52,7 @@ export default function Skills() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
           <SectionHeader
-            title={<>The tools I <span className="text-[--accent]">live in</span></>}
+            title={<>The tools I <span className="text-sky-400">live in</span></>}
             subtitle={
               <>
                 <span className="hidden sm:inline">Hover</span>

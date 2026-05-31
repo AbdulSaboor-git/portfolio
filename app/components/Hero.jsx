@@ -73,9 +73,9 @@ function TypeWriter() {
 
   return (
     <span className="text-slate-400 font-mono text-[clamp(13px,2vw,18px)]">
-      <span className="text-[--accent]/60 mr-1 select-none">$</span>
+      <span className="text-sky-400/60 mr-1 select-none">$</span>
       {typed}
-      <span className="inline-block w-[2px] h-[1em] bg-[--accent] ml-0.5 align-middle animate-blink" />
+      <span className="inline-block w-[2px] h-[1em] bg-sky-400 ml-0.5 align-middle animate-blink" />
     </span>
   );
 }
@@ -142,7 +142,7 @@ export default function Hero() {
                 text-[10px] tracking-[0.16em]
                 sm:text-[12px] sm:tracking-[0.28em]" /* ← fix #3: compact on mobile */
               style={{
-                color: "var(--accent)",
+                color: "#38bdf8",
                 textShadow: "0 0 24px rgba(56,189,248,0.35)",
               }}
             >
@@ -174,10 +174,10 @@ export default function Hero() {
         >
           I Build{" "}
           <span className="relative inline-block">
-            <span className="text-[--accent]">Products</span>
+            <span className="text-sky-400">Products</span>
             <span
               className="absolute bottom-0.5 sm:bottom-1 left-0 right-0 h-[2px]
-              bg-gradient-to-r from-[--accent] to-transparent opacity-40"
+              bg-gradient-to-r from-sky-400 to-transparent opacity-40"
             />
           </span>
           <br />
@@ -209,15 +209,15 @@ export default function Hero() {
         <motion.div
           variants={itemVariants}
           className="flex items-center justify-center gap-3
-            mb-10 sm:mb-16" /* ← fix #4: was always mb-16 */
+            mb-10 sm:mb-16"
         >
           <button
             onClick={() => scrollTo("projects")}
-            className="inline-flex items-center gap-2 bg-[--accent] hover:bg-sky-300
-              text-[--bg] font-bold rounded-full transition-all duration-200
+            className="inline-flex items-center gap-2 bg-sky-400 hover:bg-sky-300
+              text-[#06080f] font-bold rounded-full transition-all duration-200
               hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(56,189,248,0.3)]
-              text-[13px] px-5 py-3        /* mobile */
-              sm:text-[14px] sm:px-7 sm:py-3.5" /* desktop */
+              text-[13px] px-5 py-3
+              sm:text-[14px] sm:px-7 sm:py-3.5"
           >
             View my work
           </button>
@@ -226,8 +226,8 @@ export default function Hero() {
             href="https://linkedin.com/in/abdulsaboor-in"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-slate-500 hover:text-[--accent] rounded-full border border-white/10
-              hover:border-[--accent]/40 transition-all duration-200
+            className="text-slate-500 hover:text-slate-300 rounded-full border border-white/10
+              hover:border-white/40 transition-all duration-200
               p-3 sm:p-3.5"
           >
             <BsLinkedin size={17} />
@@ -236,8 +236,8 @@ export default function Hero() {
             href="https://github.com/AbdulSaboor-git"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-slate-500 hover:text-[--accent] rounded-full border border-white/10
-              hover:border-[--accent]/40 transition-all duration-200
+            className="text-slate-500 hover:text-slate-300 rounded-full border border-white/10
+              hover:border-white/40 transition-all duration-200
               p-3 sm:p-3.5"
           >
             <BsGithub size={17} />

@@ -228,9 +228,7 @@ export const PROJECTS = [
 export const ABOUT_INFO = [
   { key: "Status", value: "Available", green: true },
   { key: "Focus", value: "Full-Stack + AI" },
-  { key: "Location", value: "Lahore, PK" },
-  { key: "Degree", value: "BSCS (Hons.) Graduate" },
-  { key: "GPA", value: "3.39 / 4.00" },
+  { key: "Location", value: "Pakistan" },
   {
     key: "GitHub",
     value: "AbdulSaboor-git",
