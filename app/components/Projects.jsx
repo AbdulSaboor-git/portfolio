@@ -25,14 +25,21 @@ export default function Projects() {
           <SectionHeader
             title={
               <>
+<<<<<<< HEAD
                 Work I&apos;m <span className="text-sky-400">proud of</span>
               </>
             }
             subtitle="From AI-powered SaaS to polished client sites — built with intent, care, and an eye for production quality."
+=======
+                Selected <span className="text-sky-400">Engineering</span> Work
+              </>
+            }
+            subtitle="Full-stack web platforms, multi-seller marketplaces, and Python AI microservices. Click any project to inspect screenshots and architecture highlights."
+>>>>>>> 55e6d52267296b44005b7be089f8fee0a985db1c
           />
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {PROJECTS.map((project, i) => (
             <motion.div
               key={project.num}
@@ -60,11 +67,16 @@ export default function Projects() {
             href="https://github.com/AbdulSaboor-git"
             target="_blank"
             rel="noopener noreferrer"
+<<<<<<< HEAD
             className="inline-flex items-center gap-2 text-[13px] font-mono text-slate-600
               hover:text-slate-300 border border-white/[0.07] hover:border-white/30
+=======
+            className="inline-flex items-center gap-2 text-[13px] font-mono text-slate-300
+              hover:text-white border border-white/10 hover:border-sky-400/40 bg-white/[0.02]
+>>>>>>> 55e6d52267296b44005b7be089f8fee0a985db1c
               rounded-full px-6 py-2.5 transition-all duration-250"
           >
-            ↗ more on GitHub
+            ↗ View all repositories on GitHub
           </a>
         </motion.div>
       </div>

@@ -29,8 +29,13 @@ export default function Contact() {
   };
 
   const inputCls =
+<<<<<<< HEAD
     "bg-[#0a0d18] border border-white/[0.06] rounded-xl px-4 py-3 text-[14px] text-slate-100 " +
     "placeholder:text-slate-700 w-full outline-none focus:border-sky-400/50 " +
+=======
+    "bg-[#0a0d18] border border-white/[0.08] rounded-xl px-4 py-3 text-[14px] text-slate-100 " +
+    "placeholder:text-slate-500 w-full outline-none focus:border-sky-400/60 " +
+>>>>>>> 55e6d52267296b44005b7be089f8fee0a985db1c
     "transition-colors duration-200 font-body";
 
   return (
@@ -51,30 +56,37 @@ export default function Contact() {
                 Let&apos;s work <span className="text-sky-400">together</span>
               </>
             }
-            subtitle="Have a project or role in mind? I reply within 24 hours."
+            subtitle="Hiring for a full-stack or AI engineering role, or scoping a project? Send a note directly."
           />
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
             {/* Form */}
             <div className="flex flex-col gap-4">
-              {/* ✅ Fix: grid-cols-1 on mobile, 2 on sm+ */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
                   {
                     label: "Name",
                     key: "name",
+<<<<<<< HEAD
                     placeholder: "Abdul Saboor",
+=======
+                    placeholder: "Your name",
+>>>>>>> 55e6d52267296b44005b7be089f8fee0a985db1c
                     type: "text",
                   },
                   {
                     label: "Email",
                     key: "email",
+<<<<<<< HEAD
                     placeholder: "hello@email.com",
+=======
+                    placeholder: "you@company.com",
+>>>>>>> 55e6d52267296b44005b7be089f8fee0a985db1c
                     type: "email",
                   },
                 ].map((f) => (
                   <div key={f.key} className="flex flex-col gap-1.5">
-                    <label className="text-[11px] font-mono text-slate-600 tracking-widest uppercase">
+                    <label className="text-[11px] font-mono text-slate-400 tracking-widest uppercase">
                       {f.label}
                     </label>
                     <input
@@ -91,12 +103,12 @@ export default function Contact() {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-[11px] font-mono text-slate-600 tracking-widest uppercase">
+                <label className="text-[11px] font-mono text-slate-400 tracking-widest uppercase">
                   Subject
                 </label>
                 <input
                   className={inputCls}
-                  placeholder="Project inquiry"
+                  placeholder="Role opportunity or project scope"
                   value={form.subject}
                   onChange={(e) =>
                     setForm({ ...form, subject: e.target.value })
@@ -105,12 +117,12 @@ export default function Contact() {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-[11px] font-mono text-slate-600 tracking-widest uppercase">
+                <label className="text-[11px] font-mono text-slate-400 tracking-widest uppercase">
                   Message
                 </label>
                 <textarea
                   className={`${inputCls} resize-y min-h-[130px]`}
-                  placeholder="Tell me about your project..."
+                  placeholder="Share details about the role, stack, or timeline..."
                   value={form.message}
                   onChange={(e) =>
                     setForm({ ...form, message: e.target.value })
@@ -128,7 +140,11 @@ export default function Contact() {
                       : "bg-sky-400 hover:bg-sky-300 text-[#06080f] hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(56,189,248,0.3)]"
                   }`}
               >
+<<<<<<< HEAD
                 {sent ? "Opening email client" : "Send message →"}
+=======
+                {sent ? "Opening email client..." : "Send message →"}
+>>>>>>> 55e6d52267296b44005b7be089f8fee0a985db1c
               </button>
             </div>
 
@@ -139,8 +155,13 @@ export default function Contact() {
                   key={c.label}
                   tiltLevel={0.02}
                   glowColor="rgba(56,189,248,0.07)"
+<<<<<<< HEAD
                   className="group bg-[#0a0d18] border border-white/[0.06] rounded-2xl
                     hover:border-sky-400/20 transition-all duration-250"
+=======
+                  className="group bg-[#0a0d18] border border-white/[0.08] rounded-2xl
+                    hover:border-sky-400/30 transition-all duration-250"
+>>>>>>> 55e6d52267296b44005b7be089f8fee0a985db1c
                 >
                   <a
                     href={c.href}
@@ -153,15 +174,23 @@ export default function Contact() {
                     className="flex justify-between items-center px-5 py-4 no-underline"
                   >
                     <div>
-                      <div className="text-[10px] font-mono text-slate-700 uppercase tracking-widest mb-1">
+                      <div className="text-[10px] font-mono text-slate-400 uppercase tracking-widest mb-1">
                         {c.label}
                       </div>
+<<<<<<< HEAD
                       <div className="text-[14px] font-medium text-slate-200">
+=======
+                      <div className="text-[14px] font-medium text-slate-100">
+>>>>>>> 55e6d52267296b44005b7be089f8fee0a985db1c
                         {c.value}
                       </div>
                     </div>
                     <span
+<<<<<<< HEAD
                       className="text-slate-700 group-hover:text-sky-400
+=======
+                      className="text-slate-400 group-hover:text-sky-400
+>>>>>>> 55e6d52267296b44005b7be089f8fee0a985db1c
                         group-hover:translate-x-0.5 group-hover:-translate-y-0.5
                         transition-all duration-200 text-lg"
                     >
@@ -172,16 +201,17 @@ export default function Contact() {
               ))}
 
               {/* Availability indicator */}
-              <div className="mt-1 p-5 rounded-2xl border border-white/[0.04] bg-white/[0.01]">
+              <div className="mt-1 p-5 rounded-2xl border border-white/[0.07] bg-[#0a0d18]/60">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span className="text-[11px] font-mono text-emerald-400 tracking-wide">
-                    Currently available
+                  <span className="text-[11px] font-mono text-emerald-400 tracking-wide uppercase">
+                    Available for Opportunities
                   </span>
                 </div>
-                <p className="text-[13px] text-slate-600 leading-relaxed">
-                  Open to full-time roles and ambitious freelance projects.
-                  Response guaranteed within 24h.
+                <p className="text-[13px] text-slate-300 leading-relaxed">
+                  Open to full-time software engineering roles (remote or
+                  Lahore) and full-stack product builds. Typical response time
+                  is under 24 hours.
                 </p>
               </div>
             </div>

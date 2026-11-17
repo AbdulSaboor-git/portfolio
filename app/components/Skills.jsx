@@ -1,206 +1,243 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import {
+  Layout,
+  Cpu,
+  Server,
+  Database,
+  Terminal,
+  Workflow,
+} from "lucide-react";
 import SectionHeader from "./SectionHeader";
-import { SKILLS } from "../data/portfolio";
+import GlowCard from "./GlowCard";
+import { SKILLS, SKILL_FILTERS } from "../data/portfolio";
 
-const POSITIONS = [
-  { cx: "20%", cy: "28%" },  // Frontend
-  { cx: "50%", cy: "15%" },  // Backend
-  { cx: "80%", cy: "28%" },  // Databases
-  { cx: "20%", cy: "72%" },  // AI/ML
-  { cx: "50%", cy: "85%" },  // Tools
-  { cx: "80%", cy: "72%" },  // Soft Skills
-];
-
-const CONNECTIONS = [
-  [0,1],[1,2],[3,4],[4,5],[0,3],[1,4],[2,5],[1,3],[1,5]
-];
-
-function useElementSize(ref) {
-  const [size, setSize] = useState({ w: 0, h: 0 });
-  useEffect(() => {
-    if (!ref.current) return;
-    const ro = new ResizeObserver(([e]) => {
-      setSize({ w: e.contentRect.width, h: e.contentRect.height });
-    });
-    ro.observe(ref.current);
-    return () => ro.disconnect();
-  }, []);
-  return size;
-}
-
-function pct(p, total) {
-  return (parseFloat(p) / 100) * total;
-}
+const CATEGORY_ICONS = {
+  layout: Layout,
+  cpu: Cpu,
+  server: Server,
+  database: Database,
+  terminal: Terminal,
+};
 
 export default function Skills() {
-  const [active, setActive] = useState(0);
-  const containerRef = useRef(null);
-  const { w, h } = useElementSize(containerRef);
+  const [activeFilter, setActiveFilter] = useState("all");
+  const [selectedSkill, setSelectedSkill] = useState(null);
 
-  const activeSkill = SKILLS[active];
+  const currentFilterObj =
+    SKILL_FILTERS.find((f) => f.id === activeFilter) || SKILL_FILTERS[0];
 
   return (
-    <section id="skills" className="px-[clamp(20px,6vw,80px)] py-16 sm:py-20 md:py-28 border-t border-white/[0.04]">
+    <section
+      id="skills"
+      className="px-[clamp(20px,6vw,80px)] py-16 sm:py-20 md:py-28 border-t border-white/[0.04]"
+    >
       <div className="max-w-[1100px] mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 36 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
         >
           <SectionHeader
+<<<<<<< HEAD
             title={<>The tools I <span className="text-sky-400">live in</span></>}
             subtitle={
+=======
+            title={
+>>>>>>> 55e6d52267296b44005b7be089f8fee0a985db1c
               <>
-                <span className="hidden sm:inline">Hover</span>
-                <span className="sm:hidden">Tap</span>
-                {" "}any node to explore the stack.
+                Technical <span className="text-sky-400">Stack</span> &amp;
+                Architecture
               </>
             }
+            subtitle="Filter by production system to see how technologies connect across the stack, or tap any tool for implementation details."
           />
-        </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-8 items-start">
-
-          {/* ── Constellation canvas ── */}
-          <div
-            ref={containerRef}
-            className="relative w-full"
-            style={{ height: "clamp(360px, 50vw, 520px)" }}
-          >
-            {/* SVG connection lines */}
-            {w > 0 && (
-              <svg className="constellation-canvas" viewBox={`0 0 ${w} ${h}`}>
-                <defs>
-                  <filter id="glow-line">
-                    <feGaussianBlur stdDeviation="2" result="blur"/>
-                    <feMerge>
-                      <feMergeNode in="blur"/>
-                      <feMergeNode in="SourceGraphic"/>
-                    </feMerge>
-                  </filter>
-                </defs>
-                {CONNECTIONS.map(([a, b], i) => {
-                  const hot = active === a || active === b;
-                  return (
-                    <line
-                      key={i}
-                      x1={pct(POSITIONS[a].cx, w)} y1={pct(POSITIONS[a].cy, h)}
-                      x2={pct(POSITIONS[b].cx, w)} y2={pct(POSITIONS[b].cy, h)}
-                      stroke={hot ? "rgba(56,189,248,0.4)" : "rgba(255,255,255,0.05)"}
-                      strokeWidth={hot ? 1.5 : 1}
-                      filter={hot ? "url(#glow-line)" : undefined}
-                      style={{ transition: "stroke 0.25s, stroke-width 0.25s" }}
-                    />
-                  );
-                })}
-              </svg>
-            )}
-
-            {/* Nodes — hover AND click trigger active */}
-            {SKILLS.map((sk, i) => {
-              const pos = POSITIONS[i];
-              const isActive = active === i;
-              return (
-                <motion.div
-                  key={sk.category}
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.08, duration: 0.5, type: "spring", stiffness: 260, damping: 20 }}
-                  onMouseEnter={() => setActive(i)}
-                  onClick={() => setActive(i)}
-                  className="absolute flex flex-col items-center gap-1.5 cursor-pointer
-                    -translate-x-1/2 -translate-y-1/2 group"
-                  style={{ left: pos.cx, top: pos.cy }}
-                  role="button"
-                  aria-pressed={isActive}
-                  aria-label={`${sk.category} skills`}
-                >
-                  {/* Hit-area expander (invisible, makes tapping easier on mobile) */}
-                  <div className="absolute w-16 h-16 -translate-x-1/2 -translate-y-1/2
-                    left-1/2 top-1/2 rounded-full" />
-
-                  {/* Orb */}
-                  <motion.div
-                    animate={{
-                      scale: isActive ? 1.2 : 1,
-                      boxShadow: isActive
-                        ? `0 0 0 5px ${sk.color}22, 0 0 24px ${sk.color}44`
-                        : `0 0 0 0px ${sk.color}00`,
+          {/* ── Interactive System Filter Bar ── */}
+          <div className="mb-8 flex flex-col gap-4">
+            <div className="flex items-center gap-2 overflow-x-auto pb-1.5 sm:pb-0 sm:flex-wrap no-scrollbar">
+              <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400 mr-1 flex-shrink-0">
+                Filter by System:
+              </span>
+              {SKILL_FILTERS.map((filter) => {
+                const isSelected = activeFilter === filter.id;
+                return (
+                  <button
+                    key={filter.id}
+                    onClick={() => {
+                      setActiveFilter(filter.id);
+                      setSelectedSkill(null);
                     }}
-                    transition={{ duration: 0.25 }}
-                    className="w-12 h-12 rounded-full flex items-center justify-center text-xl
-                      border-2 transition-colors duration-250 relative z-10"
-                    style={{
-                      background: isActive ? `${sk.color}16` : "rgba(255,255,255,0.03)",
-                      borderColor: isActive ? sk.color : "rgba(255,255,255,0.09)",
-                    }}
+                    className={`px-3.5 py-2 rounded-xl text-[12px] font-mono font-medium transition-all duration-200 flex-shrink-0 border ${
+                      isSelected
+                        ? "bg-sky-400/15 text-sky-300 border-sky-400/40 shadow-[0_0_20px_rgba(56,189,248,0.15)]"
+                        : "bg-[#0a0d18] text-slate-400 border-white/[0.07] hover:text-slate-200 hover:border-white/15"
+                    }`}
                   >
-                    {sk.icon}
-                  </motion.div>
+                    {filter.label}
+                  </button>
+                );
+              })}
+            </div>
 
-                  {/* Label */}
-                  <span
-                    className="text-[10px] font-mono font-medium tracking-wide whitespace-nowrap
-                      transition-colors duration-200 relative z-10"
-                    style={{ color: isActive ? sk.color : "rgba(148,163,184,0.6)" }}
-                  >
-                    {sk.category}
-                  </span>
-
-                  {/* Pulse ring */}
-                  {isActive && (
-                    <motion.div
-                      className="absolute rounded-full pointer-events-none"
-                      initial={{ width: 48, height: 48, opacity: 0.5, border: `1.5px solid ${sk.color}` }}
-                      animate={{ width: 76, height: 76, opacity: 0 }}
-                      transition={{ duration: 1, repeat: Infinity }}
-                    />
-                  )}
-                </motion.div>
-              );
-            })}
-          </div>
-
-          {/* ── Info panel ── */}
-          <div className="lg:sticky lg:top-28">
+            {/* ── Architecture Dataflow Callout ── */}
             <AnimatePresence mode="wait">
               <motion.div
-                key={active}
-                initial={{ opacity: 0, y: 10 }}
+                key={activeFilter}
+                initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -6 }}
                 transition={{ duration: 0.2 }}
-                className="bg-[#0a0d18] border border-white/[0.06] rounded-2xl p-6"
+                className="flex items-start sm:items-center gap-3 px-4 py-3 rounded-xl bg-[#0a0d18]/90 border border-white/[0.07]"
               >
-                <div className="flex items-center gap-2.5 mb-5">
-                  <span className="text-2xl">{activeSkill.icon}</span>
-                  <span
-                    className="font-display text-[16px] font-bold"
-                    style={{ color: activeSkill.color }}
-                  >
-                    {activeSkill.category}
+                <Workflow
+                  size={16}
+                  className="text-sky-400 flex-shrink-0 mt-0.5 sm:mt-0"
+                />
+                <div className="text-[12px] sm:text-[13px] font-mono text-slate-300 leading-relaxed">
+                  <span className="text-sky-400 font-semibold mr-2">
+                    [{currentFilterObj.label}]
                   </span>
-                </div>
-                <div className="flex flex-col gap-2.5">
-                  {activeSkill.items.map((item) => (
-                    <div key={item} className="flex items-center gap-2.5">
-                      <span
-                        className="w-1 h-1 rounded-full flex-shrink-0"
-                        style={{ background: activeSkill.color }}
-                      />
-                      <span className="text-[13px] text-slate-300 font-mono">{item}</span>
-                    </div>
-                  ))}
+                  {currentFilterObj.flow}
                 </div>
               </motion.div>
             </AnimatePresence>
           </div>
-        </div>
+
+          {/* ── Responsive Bento Grid (All Skills Visible on Desktop & Mobile) ── */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {SKILLS.map((group, groupIdx) => {
+              const IconComponent =
+                CATEGORY_ICONS[group.iconKey] || Terminal;
+              const matchingCount =
+                activeFilter === "all"
+                  ? group.items.length
+                  : group.items.filter((item) =>
+                      item.projects.includes(activeFilter),
+                    ).length;
+
+              return (
+                <motion.div
+                  key={group.id}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: groupIdx * 0.06 }}
+                  className={`${group.span || "lg:col-span-1"} h-full`}
+                >
+                  <GlowCard
+                    tiltLevel="low"
+                    glowColor={`${group.color}1f`}
+                    className={`h-full p-5 sm:p-6 rounded-2xl bg-[#0a0d18]/95 border transition-all duration-300 ${
+                      matchingCount > 0
+                        ? "border-white/[0.08] hover:border-white/[0.16]"
+                        : "border-white/[0.04] opacity-60"
+                    }`}
+                  >
+                    <div className="flex flex-col h-full justify-between gap-5">
+                      <div>
+                        {/* Card Header */}
+                        <div className="flex items-center justify-between gap-3 mb-3">
+                          <div className="flex items-center gap-3">
+                            <div
+                              className="w-9 h-9 rounded-xl flex items-center justify-center border flex-shrink-0"
+                              style={{
+                                backgroundColor: `${group.color}14`,
+                                borderColor: `${group.color}35`,
+                                color: group.color,
+                              }}
+                            >
+                              <IconComponent size={18} />
+                            </div>
+                            <h3 className="font-display text-[17px] sm:text-[18px] font-bold text-slate-100 tracking-tight">
+                              {group.category}
+                            </h3>
+                          </div>
+
+                          <span
+                            className="text-[11px] font-mono px-2.5 py-1 rounded-full border flex-shrink-0"
+                            style={{
+                              color: group.color,
+                              borderColor: `${group.color}30`,
+                              backgroundColor: `${group.color}0d`,
+                            }}
+                          >
+                            {activeFilter === "all"
+                              ? `${group.items.length} tools`
+                              : `${matchingCount}/${group.items.length} used`}
+                          </span>
+                        </div>
+
+                        {/* Category Summary */}
+                        <p className="text-[13px] sm:text-[14px] text-slate-300 leading-relaxed mb-4">
+                          {group.summary}
+                        </p>
+
+                        {/* Skill Chips */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                          {group.items.map((item) => {
+                            const isMatched =
+                              activeFilter === "all" ||
+                              item.projects.includes(activeFilter);
+                            const isExpanded =
+                              selectedSkill === `${group.id}-${item.name}`;
+
+                            return (
+                              <button
+                                key={item.name}
+                                type="button"
+                                onClick={() =>
+                                  setSelectedSkill(
+                                    isExpanded
+                                      ? null
+                                      : `${group.id}-${item.name}`,
+                                  )
+                                }
+                                className={`group/chip text-left p-3 rounded-xl border transition-all duration-200 ${
+                                  isMatched
+                                    ? "bg-white/[0.03] hover:bg-white/[0.06] border-white/[0.08] hover:border-white/[0.18]"
+                                    : "bg-white/[0.01] border-white/[0.03] opacity-40"
+                                }`}
+                                style={
+                                  isMatched && activeFilter !== "all"
+                                    ? {
+                                        borderColor: `${group.color}45`,
+                                        backgroundColor: `${group.color}0c`,
+                                      }
+                                    : undefined
+                                }
+                              >
+                                <div className="flex items-center justify-between gap-2 mb-1">
+                                  <span className="font-mono text-[12px] sm:text-[13px] font-semibold text-slate-100">
+                                    {item.name}
+                                  </span>
+                                  <span
+                                    className="w-1.5 h-1.5 rounded-full flex-shrink-0 transition-transform duration-200 group-hover/chip:scale-125"
+                                    style={{
+                                      backgroundColor: isMatched
+                                        ? group.color
+                                        : "#475569",
+                                    }}
+                                  />
+                                </div>
+                                <p className="text-[11px] sm:text-[12px] text-slate-400 leading-snug">
+                                  {item.detail}
+                                </p>
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </div>
+                  </GlowCard>
+                </motion.div>
+              );
+            })}
+          </div>
+        </motion.div>
       </div>
     </section>
   );
