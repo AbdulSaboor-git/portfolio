@@ -5,7 +5,7 @@ export default function SectionHeader({ title, subtitle }) {
     <div className="mb-16">
       <div className="flex items-start gap-5">
         {/* Vertical accent bar */}
-        <div className="w-[3px] self-stretch bg-gradient-to-b from-[--accent] to-transparent
+        <div className="w-[3px] self-stretch bg-gradient-to-b from-sky-400 to-transparent
           rounded-full flex-shrink-0 min-h-[48px]" />
 
         <div>

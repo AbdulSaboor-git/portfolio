@@ -10,7 +10,7 @@ export default function Footer() {
     >
       {/* Giant bleed name — pure typographic statement */}
       <div
-        className="pointer-events-none select-none absolute bottom-4 left-[clamp(16px,5vw,60px)]
+        className="hidden md:block pointer-events-none select-none absolute bottom-4 left-[clamp(16px,5vw,60px)]
         font-display text-[clamp(56px,12vw,140px)] font-bold text-white/[0.025] leading-none
         tracking-[-0.04em] whitespace-nowrap"
       >
@@ -21,7 +21,7 @@ export default function Footer() {
       <div className="relative z-10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-12">
         <div>
           <span className="font-display text-[16px] font-bold text-slate-100">
-            Abdul<span className="text-[--accent]"> Saboor</span>
+            Abdul<span className="text-sky-400"> Saboor</span>
           </span>
           <p className="text-[12px] font-mono text-slate-600 mt-1">
             Full-Stack Developer

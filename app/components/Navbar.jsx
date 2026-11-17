@@ -132,12 +132,9 @@ export default function Navbar() {
         aria-label="Toggle menu"
         className={`fixed top-3 left-3 z-[60] md:hidden
           w-9 h-9 flex items-center justify-center rounded-xl
-          border transition-all duration-300
-          ${
-            open
-              ? "bg-[#06080f]/90 border-white/15 text-white backdrop-blur-xl"
-              : "bg-[#06080f]/60 border-white/[0.07] text-slate-400 backdrop-blur-md"
-          }`}
+          border transition-all duration-300 
+          bg-[#06080f]/60 border-white/[0.07] text-slate-400 backdrop-blur-md
+          `}
       >
         <motion.div
           animate={{ rotate: open ? 90 : 0, scale: open ? 0.9 : 1 }}
@@ -165,19 +162,19 @@ export default function Navbar() {
           return (
             <button
               key={link}
-              onClick={() => setOpen(true)}
+              onClick={() => scrollTo(link)}
               aria-label={link}
               className={`relative w-9 h-9 flex items-center justify-center rounded-xl border
-                transition-all duration-200 cursor-pointer
+                transition-all duration-200 cursor-pointer backdrop-blur-md
                 ${
                   isActive
-                    ? "bg-[--accent]/10 border-[--accent]/30 text-[--accent]"
-                    : "bg-[#06080f]/60 border-white/[0.07] text-slate-500 backdrop-blur-md hover:text-slate-300 hover:border-white/15"
+                    ? "border-sky-400/30 text-sky-400"
+                    : "border-white/[0.07] text-slate-500 hover:text-slate-300 hover:border-white/15"
                 }`}
             >
               {Icon && <Icon size={15} />}
               {isActive && (
-                <span className="absolute top-1 right-1 w-1 h-1 rounded-full bg-[--accent]" />
+                <span className="absolute top-1 right-1 w-1 h-1 rounded-full bg-sky-400" />
               )}
             </button>
           );
@@ -200,7 +197,8 @@ export default function Navbar() {
             transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
             className="fixed top-[52px] left-3 z-[58] md:hidden
               w-[190px] p-3 rounded-[20px] flex flex-col gap-1
-              bg-[#06080f]/[0.82] backdrop-blur-2xl
+              bg-[#06080f]/10 backdrop-blur-lg
+              border border-white/[0.07] 
               shadow-[0_0_0_1px_rgba(255,255,255,0.07),0_8px_32px_rgba(0,0,0,0.55)]"
           >
             {NAV_LINKS.map((link, i) => {
@@ -221,7 +219,7 @@ export default function Navbar() {
                     text-left cursor-pointer bg-transparent transition-all duration-200
                     ${
                       isActive
-                        ? "text-[--accent] border border-[--accent]/30 bg-[--accent]/[0.04]"
+                        ? "text-sky-400 border border-sky-400/30 bg-sky-400/[0.04]"
                         : "text-slate-300 border border-transparent hover:text-white hover:bg-white/[0.05]"
                     }`}
                 >
@@ -229,7 +227,7 @@ export default function Navbar() {
                     <Icon
                       size={16}
                       className={`flex-shrink-0 transition-colors duration-200
-                        ${isActive ? "text-[--accent]" : "text-slate-500"}`}
+                        ${isActive ? "text-sky-400" : "text-slate-500"}`}
                     />
                   )}
                   {link}

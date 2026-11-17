@@ -7,23 +7,30 @@ import SectionHeader from "./SectionHeader";
 import { CONTACT_LINKS } from "../data/portfolio";
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
   const [sent, setSent] = useState(false);
 
   const handleSubmit = () => {
     if (!form.name || !form.email || !form.message) return;
-    const sub  = encodeURIComponent(form.subject || "Portfolio Inquiry");
+    const sub = encodeURIComponent(form.subject || "Portfolio Inquiry");
     const body = encodeURIComponent(
-      `Hi Abdul,\n\n${form.message}\n\n— ${form.name}\n${form.email}`
+      `Hi Abdul,\n\n${form.message}\n\n— ${form.name}\n${form.email}`,
     );
-    window.open(`mailto:abdulsaboorcontact@gmail.com?subject=${sub}&body=${body}`);
+    window.open(
+      `mailto:abdulsaboorcontact@gmail.com?subject=${sub}&body=${body}`,
+    );
     setSent(true);
     setTimeout(() => setSent(false), 4000);
   };
 
   const inputCls =
     "bg-[#0a0d18] border border-white/[0.06] rounded-xl px-4 py-3 text-[14px] text-slate-100 " +
-    "placeholder:text-slate-700 w-full outline-none focus:border-[--accent]/50 " +
+    "placeholder:text-slate-700 w-full outline-none focus:border-sky-400/50 " +
     "transition-colors duration-200 font-body";
 
   return (
@@ -41,8 +48,7 @@ export default function Contact() {
           <SectionHeader
             title={
               <>
-                Let&apos;s work{" "}
-                <span className="text-[--accent]">together</span>
+                Let&apos;s work <span className="text-sky-400">together</span>
               </>
             }
             subtitle="Have a project or role in mind? I reply within 24 hours."
@@ -54,8 +60,18 @@ export default function Contact() {
               {/* ✅ Fix: grid-cols-1 on mobile, 2 on sm+ */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
-                  { label: "Name",  key: "name",  placeholder: "Abdul Saboor",    type: "text" },
-                  { label: "Email", key: "email", placeholder: "hello@email.com", type: "email" },
+                  {
+                    label: "Name",
+                    key: "name",
+                    placeholder: "Abdul Saboor",
+                    type: "text",
+                  },
+                  {
+                    label: "Email",
+                    key: "email",
+                    placeholder: "hello@email.com",
+                    type: "email",
+                  },
                 ].map((f) => (
                   <div key={f.key} className="flex flex-col gap-1.5">
                     <label className="text-[11px] font-mono text-slate-600 tracking-widest uppercase">
@@ -66,7 +82,9 @@ export default function Contact() {
                       className={inputCls}
                       placeholder={f.placeholder}
                       value={form[f.key]}
-                      onChange={(e) => setForm({ ...form, [f.key]: e.target.value })}
+                      onChange={(e) =>
+                        setForm({ ...form, [f.key]: e.target.value })
+                      }
                     />
                   </div>
                 ))}
@@ -80,7 +98,9 @@ export default function Contact() {
                   className={inputCls}
                   placeholder="Project inquiry"
                   value={form.subject}
-                  onChange={(e) => setForm({ ...form, subject: e.target.value })}
+                  onChange={(e) =>
+                    setForm({ ...form, subject: e.target.value })
+                  }
                 />
               </div>
 
@@ -92,7 +112,9 @@ export default function Contact() {
                   className={`${inputCls} resize-y min-h-[130px]`}
                   placeholder="Tell me about your project..."
                   value={form.message}
-                  onChange={(e) => setForm({ ...form, message: e.target.value })}
+                  onChange={(e) =>
+                    setForm({ ...form, message: e.target.value })
+                  }
                 />
               </div>
 
@@ -102,11 +124,11 @@ export default function Contact() {
                   active:scale-[0.98]
                   ${
                     sent
-                      ? "bg-emerald-400 text-[--bg]"
-                      : "bg-[--accent] hover:bg-sky-300 text-[--bg] hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(56,189,248,0.3)]"
+                      ? "bg-emerald-400 text-[#06080f]"
+                      : "bg-sky-400 hover:bg-sky-300 text-[#06080f] hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(56,189,248,0.3)]"
                   }`}
               >
-                {sent ? "Opening email client ✓" : "Send message →"}
+                {sent ? "Opening email client" : "Send message →"}
               </button>
             </div>
 
@@ -118,7 +140,7 @@ export default function Contact() {
                   tiltLevel={0.02}
                   glowColor="rgba(56,189,248,0.07)"
                   className="group bg-[#0a0d18] border border-white/[0.06] rounded-2xl
-                    hover:border-[--accent]/20 transition-all duration-250"
+                    hover:border-sky-400/20 transition-all duration-250"
                 >
                   <a
                     href={c.href}
@@ -134,10 +156,12 @@ export default function Contact() {
                       <div className="text-[10px] font-mono text-slate-700 uppercase tracking-widest mb-1">
                         {c.label}
                       </div>
-                      <div className="text-[14px] font-medium text-slate-200">{c.value}</div>
+                      <div className="text-[14px] font-medium text-slate-200">
+                        {c.value}
+                      </div>
                     </div>
                     <span
-                      className="text-slate-700 group-hover:text-[--accent]
+                      className="text-slate-700 group-hover:text-sky-400
                         group-hover:translate-x-0.5 group-hover:-translate-y-0.5
                         transition-all duration-200 text-lg"
                     >
