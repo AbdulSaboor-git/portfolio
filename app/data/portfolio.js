@@ -1,252 +1,93 @@
 export const NAV_LINKS = ["About", "Skills", "Projects", "Contact"];
 
-export const SKILL_FILTERS = [
-  {
-    id: "all",
-    label: "All Systems",
-    flow: "Full-Stack Architecture: Next.js 15 Client ➔ Node.js / Express & FastAPI Services ➔ Prisma ORM & PostgreSQL",
-  },
-  {
-    id: "resumeai",
-    label: "ResumeAI SaaS",
-    flow: "Next.js 15 UI ➔ Express Session API ➔ FastAPI Worker (SpaCy + Sentence Transformers + LangGraph) ➔ PostgreSQL & Serverless Chromium PDF",
-  },
-  {
-    id: "invenzo",
-    label: "Invenzo ERP",
-    flow: "Next.js 15 + Redux Toolkit ➔ Node.js REST API (Zod Validation + JWT RBAC) ➔ Prisma ORM ➔ Multi-Tenant PostgreSQL",
-  },
-  {
-    id: "royal-aseel",
-    label: "Royal Aseel Marketplace",
-    flow: "Next.js Storefront & Seller Dashboards ➔ Prisma ORM + PostgreSQL ➔ Automated WhatsApp & Email Checkout Pipeline",
-  },
-];
-
 export const SKILLS = [
   {
-    id: "frontend",
-    category: "Frontend & UI Architecture",
-    iconKey: "layout",
+    category: "Frontend",
+    icon: "◈",
     color: "#38bdf8",
-    span: "lg:col-span-2",
-    summary:
-      "Component-driven interfaces, server/client state synchronization, and responsive layouts built with React 19 and Next.js App Router.",
     items: [
-      {
-        name: "Next.js 15 (App Router)",
-        detail: "SSR, route handlers & nested layouts",
-        projects: ["resumeai", "invenzo", "royal-aseel", "3p-solar", "calmify"],
-      },
-      {
-        name: "React.js",
-        detail: "Custom hooks, stateful views & modal systems",
-        projects: ["resumeai", "invenzo", "royal-aseel", "3p-solar", "calmify"],
-      },
-      {
-        name: "TypeScript",
-        detail: "Strict API contracts & end-to-end type safety",
-        projects: ["resumeai", "invenzo"],
-      },
-      {
-        name: "Tailwind CSS",
-        detail: "Responsive design tokens & dark-mode systems",
-        projects: ["resumeai", "invenzo", "royal-aseel", "3p-solar", "calmify"],
-      },
-      {
-        name: "Redux Toolkit",
-        detail: "Normalized client state (30% fewer re-renders in Invenzo)",
-        projects: ["invenzo"],
-      },
-      {
-        name: "Framer Motion",
-        detail: "Physics-based layout transitions & carousels",
-        projects: ["calmify", "3p-solar"],
-      },
-      {
-        name: "HTML5 / CSS3",
-        detail: "Semantic markup, accessibility & fluid grids",
-        projects: ["resumeai", "invenzo", "royal-aseel", "3p-solar", "calmify"],
-      },
+      "React.js",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Redux",
+      "HTML5 / CSS3",
     ],
   },
   {
-    id: "ai",
-    category: "AI, NLP & Agent Workflows",
-    iconKey: "cpu",
-    color: "#fb923c",
-    span: "lg:col-span-1",
-    summary:
-      "Production Python microservices for document parsing, vector similarity matching, and stateful LLM orchestration.",
-    items: [
-      {
-        name: "Python",
-        detail: "Async AI workers, scraping & data pipelines",
-        projects: ["resumeai"],
-      },
-      {
-        name: "LangChain & LangGraph",
-        detail: "Multi-step agent workflows for resume rewriting",
-        projects: ["resumeai"],
-      },
-      {
-        name: "SpaCy (NLP)",
-        detail: "Named-entity extraction at 90%+ parse accuracy",
-        projects: ["resumeai"],
-      },
-      {
-        name: "Sentence Transformers",
-        detail: "95% cosine-similarity semantic skill matching",
-        projects: ["resumeai"],
-      },
-      {
-        name: "PyTorch & TensorFlow",
-        detail: "Deep learning inference & embedding pipelines",
-        projects: ["resumeai"],
-      },
-      {
-        name: "Scikit-learn",
-        detail: "TF-IDF scoring, classification & evaluation metrics",
-        projects: ["resumeai"],
-      },
-      {
-        name: "LLM APIs",
-        detail: "Structured JSON outputs & prompt guardrails",
-        projects: ["resumeai"],
-      },
-    ],
-  },
-  {
-    id: "backend",
-    category: "Backend & API Services",
-    iconKey: "server",
+    category: "Backend",
+    icon: "◉",
     color: "#a78bfa",
-    span: "lg:col-span-1",
-    summary:
-      "Polyglot API layer combining Node.js/Express for core web transactions and FastAPI for compute-heavy Python tasks.",
     items: [
-      {
-        name: "Node.js & Express.js",
-        detail: "REST controllers, rate limiting & session routing",
-        projects: ["resumeai", "invenzo"],
-      },
-      {
-        name: "FastAPI",
-        detail: "High-throughput async Python microservice endpoints",
-        projects: ["resumeai"],
-      },
-      {
-        name: "JWT & OAuth",
-        detail: "Stateless auth & scoped moderator permissions",
-        projects: ["resumeai", "invenzo", "royal-aseel"],
-      },
-      {
-        name: "Zod Schema Validation",
-        detail: "Request payload validation (25% fewer API errors)",
-        projects: ["invenzo"],
-      },
-      {
-        name: "Puppeteer & Chromium",
-        detail: "Headless PDF generation via @sparticuz/chromium",
-        projects: ["resumeai"],
-      },
-      {
-        name: "REST API Design",
-        detail: "Versioned endpoints, pagination & webhook flows",
-        projects: ["resumeai", "invenzo", "royal-aseel"],
-      },
+      "Node.js",
+      "Express.js",
+      "FastAPI",
+      "REST APIs",
+      "JWT / OAuth",
+      "CI/CD Pipelines",
     ],
   },
   {
-    id: "databases",
-    category: "Databases & Data Modeling",
-    iconKey: "database",
+    category: "Databases",
+    icon: "◇",
     color: "#34d399",
-    span: "lg:col-span-1",
-    summary:
-      "Relational schema design, multi-tenant access isolation, and type-safe ORM migrations.",
+    items: ["PostgreSQL", "MySQL", "MongoDB", "Prisma ORM", "SQL / NoSQL"],
+  },
+  {
+    category: "AI / ML",
+    icon: "⬡",
+    color: "#fb923c",
     items: [
-      {
-        name: "PostgreSQL",
-        detail: "Primary relational store for SaaS & ERP workloads",
-        projects: ["resumeai", "invenzo", "royal-aseel"],
-      },
-      {
-        name: "Prisma ORM",
-        detail: "Declarative schemas, relations & automated migrations",
-        projects: ["resumeai", "invenzo", "royal-aseel"],
-      },
-      {
-        name: "MySQL",
-        detail: "Relational indexing & transactional queries",
-        projects: ["invenzo"],
-      },
-      {
-        name: "MongoDB",
-        detail: "Document storage for flexible JSON payloads",
-        projects: ["resumeai"],
-      },
+      "Python",
+      "TensorFlow",
+      "PyTorch",
+      "Scikit-learn",
+      "LangChain / LangGraph",
+      "NLP · SpaCy",
+      "Sentence Transformers",
+      "LLM APIs",
     ],
   },
   {
-    id: "devops",
-    category: "DevOps, Tooling & Systems",
-    iconKey: "terminal",
+    category: "Tools & DevOps",
+    icon: "◑",
     color: "#f472b6",
-    span: "lg:col-span-1",
-    summary:
-      "Deployment pipelines, version control discipline across 330+ commit repositories, and low-level C++ fundamentals.",
     items: [
-      {
-        name: "Git & GitHub",
-        detail: "Feature branching, PR reviews & release tagging",
-        projects: [
-          "resumeai",
-          "invenzo",
-          "royal-aseel",
-          "3p-solar",
-          "calmify",
-          "snake-game",
-        ],
-      },
-      {
-        name: "Vercel & CI/CD",
-        detail: "Zero-downtime preview & production deployments",
-        projects: ["invenzo", "royal-aseel", "3p-solar"],
-      },
-      {
-        name: "Docker",
-        detail: "Containerized Python & PostgreSQL dev environments",
-        projects: ["resumeai"],
-      },
-      {
-        name: "Postman",
-        detail: "Automated API collection testing & debugging",
-        projects: ["resumeai", "invenzo", "royal-aseel"],
-      },
-      {
-        name: "C++ (Systems & DSA)",
-        detail: "Manual state loops, file I/O & custom console rendering",
-        projects: ["snake-game"],
-      },
+      "Git & GitHub",
+      "Postman",
+      "Vercel",
+      "Docker (basics)",
+      "Agile / Scrum",
+    ],
+  },
+  {
+    category: "Soft Skills",
+    icon: "◐",
+    color: "#fbbf24",
+    items: [
+      "Problem Solving",
+      "Team Collaboration",
+      "Clear Communication",
+      "Time Management",
     ],
   },
 ];
 
 export const PROJECTS = [
   {
-    id: "resumeai",
     num: "01",
     name: "ResumeAI",
-    badge: "Final Year Project",
-    tagline: "Multi-service AI resume parser, ATS scorer, and career platform",
-    desc: "Full-stack career platform that pairs a Next.js 15 and Express.js web application with a dedicated FastAPI Python microservice. Parses PDF and DOCX resumes with SpaCy, measures semantic skill gaps against job descriptions using Sentence Transformers, and runs a LangGraph agent workflow to rewrite bullet points with explainable ATS scoring.",
+    // badge: "FYP · In Progress",
+    tagline: "AI-powered resume & career SaaS platform",
+    desc: "A full-stack SaaS platform built as a Final Year Project — delivering intelligent resume tools powered by NLP, LLMs, and semantic search. Designed to help job seekers land roles faster with data-driven, explainable feedback.",
     highlights: [
-      "Engineered a FastAPI + SpaCy extraction pipeline achieving 90%+ field parse accuracy across single and bulk resume uploads",
-      "Implemented semantic skill-gap analysis using Sentence Transformers with 95% cosine similarity matching against target job roles",
-      "Built a transparent, rule-based ATS scoring engine that breaks down formatting, keyword, and section-level deductions",
-      "Orchestrated a stateful LangGraph agent workflow for side-by-side LLM resume optimization and diff comparison",
-      "Integrated multi-platform job aggregation and serverless PDF export using Puppeteer and @sparticuz/chromium",
+      "Multi-format resume parser achieving 90%+ parse accuracy via FastAPI + SpaCy",
+      "Semantic skill-gap analysis using sentence-transformers with 95% cosine similarity matching",
+      "ATS scoring engine with fully explainable, rule-based logic",
+      "Job search aggregation across multiple platforms via scraping pipeline",
+      "PDF export via Puppeteer + @sparticuz/chromium serverless",
+      "LLM-powered resume optimization using LangGraph agent workflow",
     ],
     tech: [
       "Next.js 15",
@@ -261,7 +102,7 @@ export const PROJECTS = [
       "Puppeteer",
       "JWT",
     ],
-    github: "https://github.com/AbdulSaboor-git",
+    github: null,
     live: null,
     featured: true,
     images: [
@@ -279,17 +120,17 @@ export const PROJECTS = [
     ],
   },
   {
-    id: "invenzo",
     num: "02",
     name: "Invenzo",
-    badge: "Live Production",
-    tagline: "Multi-tenant inventory management system with role-based access",
-    desc: "Collaborative inventory and stock analytics platform built for teams managing multiple warehouses or product catalogs. Supports granular owner and moderator permissions, real-time low-stock threshold alerts, and interactive financial and stock movement reporting.",
+    tagline: "Multi-user inventory management system",
+    desc: "A production-grade full-stack inventory platform with multi-user support, role-based access control, and real-time stock analytics. Users can create multiple inventories, invite collaborators as moderators, and generate detailed business reports.",
     highlights: [
-      "Designed multi-user workspaces with scoped owner and moderator role-based access control (RBAC)",
-      "Reduced malformed API requests by 25% by enforcing shared Zod validation schemas across client forms and Node.js controllers",
-      "Improved dashboard state transitions by 30% using normalized Redux Toolkit slices for inventory tables and filters",
-      "Built real-time stock tracking with configurable reorder alerts and visual reporting charts",
+      "Multi-user inventories with moderator roles and scoped permissions",
+      "Real-time stock tracking with configurable low-stock alerts",
+      "Business reporting and analytics dashboard with visual charts",
+      "25% reduction in API errors via Zod schema validation",
+      "30% performance improvement through Redux state management",
+      "Fully responsive UI with dark/light mode toggle",
     ],
     tech: [
       "Next.js 15",
@@ -298,7 +139,6 @@ export const PROJECTS = [
       "Prisma ORM",
       "Tailwind CSS",
       "Redux",
-      "Zod",
       "JWT Auth",
     ],
     github: "https://github.com/AbdulSaboor-git/Invenzo",
@@ -307,34 +147,35 @@ export const PROJECTS = [
     images: [],
   },
   {
-    id: "royal-aseel",
     num: "03",
     name: "Royal Aseel Farms",
-    badge: "330+ Commits",
-    tagline: "Multi-vendor agricultural marketplace and admin suite",
-    desc: "End-to-end e-commerce marketplace developed over 330+ commits for a specialized poultry business. Connects independent sellers with buyers through a searchable catalog, dedicated vendor and admin control panels, and direct order routing via WhatsApp and email.",
+    tagline: "Multi-seller e-commerce & farm marketplace",
+    desc: "A complete e-commerce marketplace for a poultry business — multiple sellers list products, buyers search and filter, and orders route through WhatsApp or email. Includes full admin and seller dashboards with 330+ commits of active development.",
     highlights: [
-      "Architected a multi-seller marketplace schema in PostgreSQL and Prisma with isolated vendor inventory and order views",
-      "Built dynamic catalog search, multi-attribute filtering, and persistent user favorites",
-      "Implemented a dual-channel checkout pipeline that formats and dispatches verified orders via WhatsApp and email",
-      "Created a full platform administration suite for seller verification, listing moderation, and user management",
+      "Multi-seller marketplace architecture with independent seller dashboards",
+      "Advanced search, filter, and favourites system",
+      "Cart with WhatsApp and email checkout flow",
+      "Full admin panel for platform and user management",
+      "SEO-optimised product listing pages",
     ],
     tech: ["Next.js", "PostgreSQL", "Prisma ORM", "Tailwind CSS", "JavaScript"],
     github: "https://github.com/AbdulSaboor-git/royal-aseel-farms",
     live: "https://royal-aseel-farms.vercel.app",
     featured: false,
-    images: ["screenshots/royal-aseel-farms/raf.png"],
+    images: [
+      // "screenshots/royal-aseel-farms/raf.png"
+    ],
   },
   {
-    id: "3p-solar",
     num: "04",
     name: "3P Solar Solutions",
-    tagline: "Commercial web platform and lead-capture pipeline for solar EPC",
-    desc: "Responsive commercial web presence engineered for a solar energy provider to showcase residential, commercial, and industrial installation packages and capture qualified customer consultation requests.",
+    tagline: "Conversion-optimised company website",
+    desc: "A clean, modern website for a solar energy company. Built to drive enquiries through compelling service pages, a fast-loading responsive layout, and a simple contact pipeline — deployed and maintained on Vercel.",
     highlights: [
-      "Structured dedicated service breakdown pages for residential, commercial, and industrial solar offerings",
-      "Engineered fast-loading responsive layouts with clear lead-generation call-to-action funnels",
-      "Configured automated CI/CD preview and production deployments on Vercel",
+      "Conversion-focused landing page with clear CTAs",
+      "Service showcase with detailed individual pages",
+      "Fully responsive across all screen sizes",
+      "Deployed on Vercel with automatic CI/CD",
     ],
     tech: ["Next.js", "Tailwind CSS", "JavaScript", "Vercel"],
     github: "https://github.com/AbdulSaboor-git/3p-solar-solutions",
@@ -346,15 +187,14 @@ export const PROJECTS = [
     ],
   },
   {
-    id: "calmify",
     num: "05",
     name: "Calmify",
-    tagline: "Guided mindfulness and breathing web application",
-    desc: "Frontend-focused wellness web application built with Next.js App Router and Framer Motion. Uses choreographed transitions, low-glare color tokens, and distraction-free navigation for guided breathing and mindfulness sessions.",
+    tagline: "Wellness-focused web experience",
+    desc: "A thoughtfully designed wellness app centred on calm — serene visuals, gentle micro-animations, and an intentional UX that guides users toward mindful moments. A showcase of design-driven development.",
     highlights: [
-      "Built smooth, distraction-free view transitions and breathing timers using Framer Motion",
-      "Designed a low-contrast, eye-friendly color system tailored for evening and low-light usage",
-      "Implemented responsive mobile-first layouts using Next.js App Router and Tailwind CSS",
+      "Serene, calming visual language with muted palette",
+      "Wellness-focused interaction and navigation patterns",
+      "Built with Next.js App Router and Framer Motion animations",
     ],
     tech: ["Next.js", "Tailwind CSS", "Framer Motion", "JavaScript"],
     github: "https://github.com/AbdulSaboor-git/calmify",
@@ -367,18 +207,17 @@ export const PROJECTS = [
     ],
   },
   {
-    id: "snake-game",
     num: "06",
-    name: "Snake Game (C++)",
-    tagline: "Zero-dependency C++ console game with custom frame buffer",
-    desc: "Complete arcade Snake implementation written in standard C++ without external graphics engines. Features a custom console frame renderer, interactive settings menu, variable tick-rate difficulty scaling, and file-backed high-score persistence.",
+    name: "Snake Game",
+    tagline: "Zero-dependency C++ console game",
+    desc: "A feature-complete Snake game built entirely in C++ — no game engine, no external libraries. Custom console renderer, full menu system, persistent high scores, and configurable difficulty. A testament to low-level problem solving.",
     highlights: [
-      "Wrote a custom double-buffered console renderer from scratch to eliminate screen flicker",
-      "Implemented a state-driven menu system with configurable game speed and difficulty tiers",
-      "Built file-system serialization for persistent local high-score leaderboards",
-      "Engineered body-segment collision and growth logic using pure C++ data structures",
+      "Custom console UI renderer built entirely from scratch",
+      "Full game menu with settings and persistent high score tracking",
+      "Configurable snake speed with multiple difficulty levels",
+      "Zero external dependencies — pure C++ logic and data structures",
     ],
-    tech: ["C++", "Console Rendering", "File I/O", "Data Structures"],
+    tech: ["C++", "Console UI", "Algorithms", "Data Structures"],
     github: "https://github.com/AbdulSaboor-git/Snake-Game",
     live: null,
     featured: false,
@@ -387,7 +226,6 @@ export const PROJECTS = [
 ];
 
 export const ABOUT_INFO = [
-<<<<<<< HEAD
   { key: "Status", value: "Available", green: true },
   { key: "Focus", value: "Full-Stack + AI" },
   { key: "Location", value: "Pakistan" },
@@ -401,12 +239,6 @@ export const ABOUT_INFO = [
     value: "abdulsaboor-in",
     link: "https://linkedin.com/in/abdulsaboor-in",
   },
-=======
-  { key: "Education", value: "BSCS (Hons.) Graduate" },
-  { key: "Location", value: "Lahore, Pakistan" },
-  { key: "Core Stack", value: "Next.js · Node · FastAPI · PostgreSQL" },
-  { key: "Availability", value: "Full-Time & Select Freelance", green: true },
->>>>>>> 55e6d52267296b44005b7be089f8fee0a985db1c
 ];
 
 export const CONTACT_LINKS = [

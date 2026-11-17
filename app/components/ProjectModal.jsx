@@ -7,9 +7,7 @@ import ImageCarousel from "./ImageCarousel";
 
 export default function ProjectModal({ project, onClose }) {
   useEffect(() => {
-    const handler = (e) => {
-      if (e.key === "Escape") onClose();
-    };
+    const handler = (e) => { if (e.key === "Escape") onClose(); };
     document.addEventListener("keydown", handler);
     document.body.style.overflow = "hidden";
     return () => {
@@ -25,13 +23,13 @@ export default function ProjectModal({ project, onClose }) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        onClick={(e) => {
-          if (e.target === e.currentTarget) onClose();
-        }}
+        onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
         className="fixed inset-0 bg-black/80 backdrop-blur-xl z-[100]
           flex items-end sm:items-center justify-center sm:p-5"
       >
         {/* ── Panel ── */}
+        {/* Mobile: slides up from bottom, full-screen feel
+            Desktop: centered card, capped at 640px × 88vh */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -42,7 +40,7 @@ export default function ProjectModal({ project, onClose }) {
             rounded-t-[24px]
             max-h-[92dvh]
             sm:border sm:border-white/10 sm:rounded-[20px]
-            sm:max-w-[660px] sm:max-h-[88vh]"
+            sm:max-w-[640px] sm:max-h-[88vh]"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Drag handle — mobile only */}
@@ -51,24 +49,23 @@ export default function ProjectModal({ project, onClose }) {
           </div>
 
           {/* Sticky close */}
-          <div
-            className="sticky top-0 z-10 flex justify-between items-center
+          <div className="sticky top-0 z-10 flex justify-between items-center
             px-5 sm:px-6 pt-4 sm:pt-5 pb-3 bg-[#0d1526]/95 backdrop-blur-sm"
           >
+            {/* Project name in header on mobile — saves scroll */}
             <h3
-              className={`font-display text-[17px] sm:text-[18px] font-bold tracking-tight
+              className={`font-display text-[16px] sm:text-[18px] font-bold tracking-tight
                 leading-tight truncate pr-2 sm:hidden
                 ${project.featured ? "text-sky-400" : "text-slate-100"}`}
             >
               {project.name}
             </h3>
-            <span className="hidden sm:block" />
+            <span className="hidden sm:block" /> {/* spacer on desktop */}
 
             <button
               onClick={onClose}
-              aria-label="Close modal"
               className="flex-shrink-0 w-9 h-9 rounded-xl bg-white/[0.06] border border-white/10
-                text-slate-300 hover:text-white hover:bg-white/10
+                text-slate-400 hover:text-slate-100 hover:bg-white/10
                 flex items-center justify-center transition-all duration-200
                 active:scale-95 cursor-pointer"
             >
@@ -82,8 +79,9 @@ export default function ProjectModal({ project, onClose }) {
               <ImageCarousel images={project.images} />
             )}
 
-            <p className="text-[11px] font-mono font-semibold text-slate-400 tracking-[0.1em] mb-1.5">
-              PROJECT {project.num}
+            {/* Header — full title hidden on mobile (shown in sticky bar) */}
+            <p className="text-[11px] font-bold text-slate-600 tracking-[0.1em] mb-2">
+              {project.num}
             </p>
             <h3
               className={`hidden sm:block font-display font-extrabold tracking-tight
@@ -92,58 +90,49 @@ export default function ProjectModal({ project, onClose }) {
             >
               {project.name}
             </h3>
-            <p className="text-[14px] text-slate-300 font-medium mb-4">
-              {project.tagline}
-            </p>
+            <p className="text-[13px] text-slate-500 mb-4">{project.tagline}</p>
 
             {project.badge && (
-              <span
-                className="inline-flex items-center gap-1.5 text-[11px] font-mono font-semibold text-sky-300
+              <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-sky-400
                 bg-sky-400/10 border border-sky-400/25 rounded-md px-2.5 py-1 tracking-wide mb-5"
               >
                 ● {project.badge}
               </span>
             )}
 
-            <div className="h-px bg-white/[0.08] my-5" />
+            <div className="h-px bg-white/[0.06] my-5" />
 
             {/* Overview */}
-            <p className="text-[11px] font-mono font-semibold text-sky-400 tracking-[0.1em] uppercase mb-2.5">
-              Architecture &amp; Overview
+            <p className="text-[11px] font-bold text-sky-400 tracking-[0.1em] uppercase mb-3">
+              Overview
             </p>
-            <p className="text-[14px] sm:text-[15px] text-slate-200 leading-[1.8]">
-              {project.desc}
-            </p>
+            <p className="text-[14px] text-slate-400 leading-[1.85]">{project.desc}</p>
 
-            <div className="h-px bg-white/[0.08] my-5" />
+            <div className="h-px bg-white/[0.06] my-5" />
 
-            {/* Key Engineering Highlights */}
-            <p className="text-[11px] font-mono font-semibold text-sky-400 tracking-[0.1em] uppercase mb-3">
-              Engineering Highlights
+            {/* Key Features */}
+            <p className="text-[11px] font-bold text-sky-400 tracking-[0.1em] uppercase mb-3">
+              Key Features
             </p>
             <ul className="flex flex-col gap-2.5">
               {project.highlights.map((h, i) => (
-                <li
-                  key={i}
-                  className="flex gap-2.5 text-[13px] sm:text-[14px] text-slate-200 leading-[1.7]"
-                >
+                <li key={i} className="flex gap-2.5 text-[13px] text-slate-400 leading-[1.7]">
                   <span className="text-sky-400 shrink-0 mt-0.5">▸</span>
                   {h}
                 </li>
               ))}
             </ul>
 
-            <div className="h-px bg-white/[0.08] my-5" />
+            <div className="h-px bg-white/[0.06] my-5" />
 
             {/* Tech Stack */}
-            <p className="text-[11px] font-mono font-semibold text-sky-400 tracking-[0.1em] uppercase mb-3">
+            <p className="text-[11px] font-bold text-sky-400 tracking-[0.1em] uppercase mb-3">
               Tech Stack
             </p>
             <div className="flex flex-wrap gap-2">
               {project.tech.map((t) => (
-                <span
-                  key={t}
-                  className="text-[11px] sm:text-[12px] font-mono font-medium text-slate-100 cursor-default
+                <span key={t}
+                  className="text-[11px] font-semibold text-slate-100 cursor-default
                     bg-white/[0.06] border hover:bg-sky-200/10 transition-all duration-200
                     border-white/10 rounded-md px-3 py-1"
                 >
@@ -155,27 +144,21 @@ export default function ProjectModal({ project, onClose }) {
             {/* Actions */}
             <div className="flex flex-wrap gap-3 mt-6">
               {project.live && (
-                <a
-                  href={project.live}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <a href={project.live} target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 bg-sky-400 hover:bg-sky-300
                     text-[#070b14] text-[13px] font-bold px-5 py-2.5 rounded-lg
                     transition-colors active:scale-95"
                 >
-                  View Live Deployment ↗
+                  View Live ↗
                 </a>
               )}
               {project.github && (
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-slate-200 hover:text-sky-300
-                    text-[13px] font-semibold px-5 py-2.5 rounded-lg border border-white/15
+                <a href={project.github} target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-slate-400 hover:text-sky-400
+                    text-[13px] font-semibold px-5 py-2.5 rounded-lg border border-white/10
                     hover:border-sky-400/50 transition-all active:scale-95"
                 >
-                  Source Code on GitHub ↗
+                  GitHub ↗
                 </a>
               )}
             </div>
