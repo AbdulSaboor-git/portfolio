@@ -26,7 +26,11 @@
     font-family: "DM Sans", sans-serif;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    user-select: none;
+  }
+
+  ::selection {
+    background: rgba(56, 189, 248, 0.22);
+    color: #f8fafc;
   }
 
   a {
@@ -40,7 +44,7 @@
   }
 
   ::-webkit-scrollbar {
-    width: 3px;
+    width: 4px;
   }
   ::-webkit-scrollbar-track {
     background: var(--bg);
@@ -60,9 +64,6 @@
   }
   .font-mono {
     font-family: "JetBrains Mono", monospace;
-  }
-  .font-serif {
-    font-family: "Playfair Display", Georgia, serif;
   }
 
   /* ── DOT GRID: only visible in a halo around the cursor ── */
@@ -148,17 +149,9 @@
     overflow: hidden;
   }
 
-  /* constellation canvas */
-  .constellation-canvas {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
-
-  /* ── MOBILE NAV PANEL (old.zip behaviour, panel from right) ── */
+  /* ── MOBILE NAV PANEL ── */
   .mobile-nav-panel {
     position: fixed;
-    /* Align with hamburger button on the right */
     top: 10px;
     right: 0;
     z-index: 50;
@@ -168,7 +161,6 @@
     display: flex;
     flex-direction: column;
     gap: 4px;
-    /* Offscreen right — mirrors old.zip margin-right: -170px */
     transform: translateX(73%);
     transition:
       transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),

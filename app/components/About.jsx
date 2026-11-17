@@ -1,78 +1,37 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { Layers, Server, Cpu, ArrowUpRight } from "lucide-react";
 import SectionHeader from "./SectionHeader";
+import GlowCard from "./GlowCard";
+import { ABOUT_INFO } from "../data/portfolio";
 
-const TERMINAL_LINES = [
-  { prompt: "whoami", out: "Abdul Saboor" },
-  { prompt: "location", out: "Pakistan" },
-  { prompt: "status", out: "Available for hire" },
-  { prompt: "focus", out: "Full-Stack + AI/ML" },
+const ARCHITECTURE_LAYERS = [
+  {
+    step: "01",
+    title: "Client & State Architecture",
+    icon: Layers,
+    color: "#38bdf8",
+    tech: "Next.js 15 · React 19 · TypeScript · Redux Toolkit · Tailwind CSS",
+    desc: "Responsive, accessible interfaces with normalized client state and predictable server/client component boundaries.",
+  },
+  {
+    step: "02",
+    title: "Polyglot API & Service Layer",
+    icon: Server,
+    color: "#a78bfa",
+    tech: "Node.js · Express.js · FastAPI · Zod · JWT RBAC",
+    desc: "Transactional REST APIs in Node.js paired with async Python FastAPI microservices for compute-heavy workloads.",
+  },
+  {
+    step: "03",
+    title: "Applied AI & Relational Data",
+    icon: Cpu,
+    color: "#34d399",
+    tech: "SpaCy NLP · LangGraph · Sentence Transformers · Prisma · PostgreSQL",
+    desc: "Explainable NLP parsing, semantic vector matching, and multi-tenant PostgreSQL schemas with automated migrations.",
+  },
 ];
-
-const STACK = [
-  { label: "React.js", color: "#38bdf8" },
-  { label: "Next.js", color: "#a78bfa" },
-  { label: "Node.js", color: "#34d399" },
-  { label: "FastAPI", color: "#fb923c" },
-  { label: "PostgreSQL", color: "#38bdf8" },
-  { label: "Python", color: "#fbbf24" },
-  { label: "LangGraph", color: "#f472b6" },
-  { label: "TypeScript", color: "#a78bfa" },
-];
-
-function TerminalCard() {
-  const [visibleLines, setVisibleLines] = useState(0);
-  const timerRef = useRef(null);
-
-  useEffect(() => {
-    if (visibleLines < TERMINAL_LINES.length) {
-      timerRef.current = setTimeout(
-        () => setVisibleLines((n) => n + 1),
-        visibleLines === 0 ? 400 : 320,
-      );
-    }
-    return () => clearTimeout(timerRef.current);
-  }, [visibleLines]);
-
-  return (
-    <div
-      className="bg-[#0a0d18] border border-white/[0.06] rounded-2xl overflow-hidden
-      font-mono text-[13px] shadow-[0_24px_80px_rgba(0,0,0,0.6)]"
-    >
-      {/* Window chrome */}
-      <div className="flex items-center gap-2 px-4 py-3 border-b border-white/[0.05] bg-white/[0.02]">
-        <span className="w-3 h-3 rounded-full bg-[#ff5f57]" />
-        <span className="w-3 h-3 rounded-full bg-[#febc2e]" />
-        <span className="w-3 h-3 rounded-full bg-[#28c840]" />
-        <span className="ml-3 text-[11px] text-slate-600">
-          ~/portfolio — zsh
-        </span>
-      </div>
-
-      {/* Terminal body */}
-      <div className="px-5 py-5 space-y-2 min-h-[240px]">
-        {TERMINAL_LINES.slice(0, visibleLines).map((line, i) => (
-          <div key={i} className="flex gap-2">
-            <span className="text-sky-400/60 select-none flex-shrink-0">❯</span>
-            <div className="flex flex-col gap-0.5">
-              <span className="text-sky-400">{line.prompt}</span>
-              <span className="text-slate-400 pl-0">{line.out}</span>
-            </div>
-          </div>
-        ))}
-        {/* Blinking cursor on last line */}
-        {visibleLines < TERMINAL_LINES.length && (
-          <div className="flex gap-2">
-            <span className="text-sky-400/60 select-none">❯</span>
-            <span className="inline-block w-[8px] h-[14px] bg-sky-400/60 animate-blink align-middle mt-0.5" />
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
 
 export default function About() {
   return (
@@ -88,73 +47,150 @@ export default function About() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
           <SectionHeader
-            title="About me"
-            subtitle="A builder who cares about the craft."
+            title={
+              <>
+                Engineering <span className="text-sky-400">Approach</span>
+              </>
+            }
+            subtitle="How I structure full-stack web applications and Python AI services from schema design to deployment."
           />
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-            {/* Left: terminal */}
-            <TerminalCard />
-
-            {/* Right: bio + stack */}
-            <div>
-              {[
-                "I'm a full-stack developer who's spent the last several years obsessing over building products that feel as good as they perform.",
-                "My work spans the full stack: pixel-perfect React frontends, robust Node.js APIs, PostgreSQL data models, and Python-powered AI microservices. I've shipped everything from multi-seller e-commerce platforms to NLP-driven SaaS tools with real users.",
-                "What drives me isn't writing code — it's understanding the business problem first, then engineering the cleanest, most scalable path to a solution.",
-              ].map((text, i) => (
-                <p
-                  key={i}
-                  className="text-[15px] text-slate-500 leading-[1.85] mb-4 last:mb-0"
-                >
-                  {text}
-                </p>
-              ))}
-
-              {/* Stack board */}
-              <div className="mt-8 pt-7 border-t border-white/[0.05]">
-                <p className="text-[11px] font-mono text-slate-600 tracking-widest uppercase mb-4">
-                  Current stack
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {STACK.map((s) => (
-                    <span
-                      key={s.label}
-                      className="text-[12px] font-mono px-3 py-1.5 rounded-lg border transition-all duration-200
-                        cursor-default hover:-translate-y-0.5"
-                      style={{
-                        color: s.color,
-                        borderColor: `${s.color}25`,
-                        background: `${s.color}08`,
-                      }}
-                    >
-                      {s.label}
-                    </span>
-                  ))}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+            {/* Left: System Architecture Blueprint Card (Replaces fake 4-line terminal) */}
+            <div className="lg:col-span-6">
+              <GlowCard
+                tiltLevel="low"
+                glowColor="rgba(56,189,248,0.10)"
+                className="bg-[#0a0d18] border border-white/[0.08] rounded-2xl p-5 sm:p-6 shadow-[0_24px_80px_rgba(0,0,0,0.5)]"
+              >
+                <div className="flex items-center justify-between pb-4 mb-5 border-b border-white/[0.06]">
+                  <span className="text-[11px] font-mono uppercase tracking-widest text-sky-400 font-semibold">
+                    System Blueprint
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 text-[11px] font-mono text-emerald-400">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    Lahore, PK · UTC+5
+                  </span>
                 </div>
+
+                <div className="flex flex-col gap-4">
+                  {ARCHITECTURE_LAYERS.map((layer) => {
+                    const Icon = layer.icon;
+                    return (
+                      <div
+                        key={layer.step}
+                        className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-white/[0.12] transition-colors"
+                      >
+                        <div className="flex items-center gap-3 mb-1.5">
+                          <div
+                            className="w-7 h-7 rounded-lg flex items-center justify-center border flex-shrink-0"
+                            style={{
+                              color: layer.color,
+                              borderColor: `${layer.color}35`,
+                              backgroundColor: `${layer.color}12`,
+                            }}
+                          >
+                            <Icon size={15} />
+                          </div>
+                          <span className="text-[11px] font-mono text-slate-400">
+                            {layer.step}
+                          </span>
+                          <h3 className="font-display text-[15px] font-bold text-slate-100">
+                            {layer.title}
+                          </h3>
+                        </div>
+                        <p className="text-[12px] sm:text-[13px] text-slate-300 leading-relaxed mb-2">
+                          {layer.desc}
+                        </p>
+                        <p
+                          className="text-[11px] font-mono leading-snug"
+                          style={{ color: layer.color }}
+                        >
+                          {layer.tech}
+                        </p>
+                      </div>
+                    );
+                  })}
+                </div>
+              </GlowCard>
+            </div>
+
+            {/* Right: De-slopped Bio + Quick Profile Facts */}
+            <div className="lg:col-span-6 flex flex-col justify-between">
+              <div className="space-y-4">
+                <p className="text-[15px] sm:text-[16px] text-slate-200 leading-[1.8] font-medium">
+                  I&apos;m Abdul Saboor, a BSCS (Hons.) graduate and full-stack
+                  developer based in Lahore. I build web applications that pair
+                  responsive React and Next.js interfaces with reliable backend
+                  and AI infrastructure.
+                </p>
+                <p className="text-[14px] sm:text-[15px] text-slate-300 leading-[1.85]">
+                  Instead of keeping AI features as isolated scripts, I
+                  integrate them into real product workflows. On{" "}
+                  <strong className="text-slate-100 font-semibold">
+                    ResumeAI
+                  </strong>
+                  , that meant separating the Next.js and Express web tier from
+                  an asynchronous FastAPI worker running SpaCy entity extraction,
+                  Sentence Transformer embeddings, and LangGraph agent workflows.
+                </p>
+                <p className="text-[14px] sm:text-[15px] text-slate-300 leading-[1.85]">
+                  Across multi-tenant systems like{" "}
+                  <strong className="text-slate-100 font-semibold">
+                    Invenzo
+                  </strong>{" "}
+                  and my 330+ commit e-commerce marketplace for{" "}
+                  <strong className="text-slate-100 font-semibold">
+                    Royal Aseel Farms
+                  </strong>
+                  , I focus on strict schema validation (Zod + Prisma),
+                  role-based access control, and clean UI state that stays fast
+                  on both desktop and mobile devices.
+                </p>
               </div>
 
-              {/* Links */}
-              <div className="mt-7 flex gap-3">
+              {/* Structured Profile Metadata */}
+              <div className="mt-8 pt-6 border-t border-white/[0.07] grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                {ABOUT_INFO.map((item) => (
+                  <div
+                    key={item.key}
+                    className="px-4 py-3 rounded-xl bg-[#0a0d18] border border-white/[0.06]"
+                  >
+                    <div className="text-[10px] font-mono uppercase tracking-widest text-slate-400 mb-1">
+                      {item.key}
+                    </div>
+                    <div
+                      className={`text-[13px] font-medium ${
+                        item.green ? "text-emerald-400" : "text-slate-100"
+                      }`}
+                    >
+                      {item.value}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Action Links */}
+              <div className="mt-6 flex flex-wrap gap-3">
                 <a
                   href="https://github.com/AbdulSaboor-git"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[12px] font-medium text-slate-500 hover:text-slate-100
-                    border border-white/[0.07] hover:border-white/20 px-4 py-2 rounded-lg
-                    transition-all duration-200"
+                  className="inline-flex items-center gap-1.5 text-[13px] font-medium text-slate-200 hover:text-white
+                    bg-white/[0.03] hover:bg-white/[0.07] border border-white/10 hover:border-sky-400/40
+                    px-4 py-2.5 rounded-xl transition-all duration-200"
                 >
-                  GitHub ↗
+                  GitHub Profile <ArrowUpRight size={14} />
                 </a>
                 <a
                   href="https://linkedin.com/in/abdulsaboor-in"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[12px] font-medium text-slate-500 hover:text-slate-100
-                    border border-white/[0.07] hover:border-white/20 px-4 py-2 rounded-lg
-                    transition-all duration-200"
+                  className="inline-flex items-center gap-1.5 text-[13px] font-medium text-slate-200 hover:text-white
+                    bg-white/[0.03] hover:bg-white/[0.07] border border-white/10 hover:border-sky-400/40
+                    px-4 py-2.5 rounded-xl transition-all duration-200"
                 >
-                  LinkedIn ↗
+                  LinkedIn <ArrowUpRight size={14} />
                 </a>
               </div>
             </div>
