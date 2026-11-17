@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import { BsGithub, BsLinkedin } from "react-icons/bs";
 
 const MARQUEE_ITEMS = [
-  "Next.js 15",
+  "Next.js",
   "·",
-  "React 19",
+  "React.js",
   "·",
   "TypeScript",
   "·",
