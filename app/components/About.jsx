@@ -38,35 +38,35 @@ function TerminalCard() {
 
   return (
     <div
-      className="bg-[#0a0d18] border border-white/[0.06] rounded-2xl overflow-hidden
+      className="bg-[#0a0d18] border border-white/12 rounded-2xl overflow-hidden
       font-mono text-[13px] shadow-[0_24px_80px_rgba(0,0,0,0.6)]"
     >
       {/* Window chrome */}
-      <div className="flex items-center gap-2 px-4 py-3 border-b border-white/[0.05] bg-white/[0.02]">
+      {/* <div className="flex items-center gap-2 px-4 py-3 border-b border-white/10 bg-white/[0.03]">
         <span className="w-3 h-3 rounded-full bg-[#ff5f57]" />
         <span className="w-3 h-3 rounded-full bg-[#febc2e]" />
         <span className="w-3 h-3 rounded-full bg-[#28c840]" />
-        <span className="ml-3 text-[11px] text-slate-600">
-          ~/portfolio — zsh
+        <span className="ml-3 text-[11px] text-slate-400">
+          ~/portfolio - zsh
         </span>
-      </div>
+      </div> */}
 
       {/* Terminal body */}
-      <div className="px-5 py-5 space-y-2 min-h-[240px]">
+      <div className="px-5 py-5 space-y-2.5 min-h-[240px]">
         {TERMINAL_LINES.slice(0, visibleLines).map((line, i) => (
           <div key={i} className="flex gap-2">
-            <span className="text-sky-400/60 select-none flex-shrink-0">❯</span>
+            <span className="text-sky-400/80 select-none flex-shrink-0">❯</span>
             <div className="flex flex-col gap-0.5">
               <span className="text-sky-400">{line.prompt}</span>
-              <span className="text-slate-400 pl-0">{line.out}</span>
+              <span className="text-slate-200 pl-0">{line.out}</span>
             </div>
           </div>
         ))}
         {/* Blinking cursor on last line */}
         {visibleLines < TERMINAL_LINES.length && (
           <div className="flex gap-2">
-            <span className="text-sky-400/60 select-none">❯</span>
-            <span className="inline-block w-[8px] h-[14px] bg-sky-400/60 animate-blink align-middle mt-0.5" />
+            <span className="text-sky-400/80 select-none">❯</span>
+            <span className="inline-block w-[8px] h-[14px] bg-sky-400/80 animate-blink align-middle mt-0.5" />
           </div>
         )}
       </div>
@@ -78,7 +78,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="px-[clamp(20px,6vw,80px)] py-16 sm:py-20 md:py-28 border-t border-white/[0.04]"
+      className="px-[clamp(20px,6vw,80px)] py-16 sm:py-20 md:py-28 border-t border-white/[0.08]"
     >
       <div className="max-w-[1100px] mx-auto">
         <motion.div
@@ -101,19 +101,19 @@ export default function About() {
               {[
                 "I'm a full-stack developer who's spent the last several years obsessing over building products that feel as good as they perform.",
                 "My work spans the full stack: pixel-perfect React frontends, robust Node.js APIs, PostgreSQL data models, and Python-powered AI microservices. I've shipped everything from multi-seller e-commerce platforms to NLP-driven SaaS tools with real users.",
-                "What drives me isn't writing code — it's understanding the business problem first, then engineering the cleanest, most scalable path to a solution.",
+                "What drives me isn't writing code - it's understanding the business problem first, then engineering the cleanest, most scalable path to a solution.",
               ].map((text, i) => (
                 <p
                   key={i}
-                  className="text-[15px] text-slate-500 leading-[1.85] mb-4 last:mb-0"
+                  className="text-[15px] text-slate-300 leading-[1.85] mb-4 last:mb-0"
                 >
                   {text}
                 </p>
               ))}
 
               {/* Stack board */}
-              <div className="mt-8 pt-7 border-t border-white/[0.05]">
-                <p className="text-[11px] font-mono text-slate-600 tracking-widest uppercase mb-4">
+              <div className="mt-8 pt-7 border-t border-white/10">
+                <p className="text-[11px] font-mono text-slate-400 tracking-widest uppercase mb-4">
                   Current stack
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -124,8 +124,8 @@ export default function About() {
                         cursor-default hover:-translate-y-0.5"
                       style={{
                         color: s.color,
-                        borderColor: `${s.color}25`,
-                        background: `${s.color}08`,
+                        borderColor: `${s.color}40`,
+                        background: `${s.color}14`,
                       }}
                     >
                       {s.label}
@@ -140,8 +140,9 @@ export default function About() {
                   href="https://github.com/AbdulSaboor-git"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[12px] font-medium text-slate-500 hover:text-slate-100
-                    border border-white/[0.07] hover:border-white/20 px-4 py-2 rounded-lg
+                  className="text-[12px] font-medium text-slate-200 hover:text-white
+                    bg-white/[0.05] hover:bg-white/[0.1]
+                    border border-white/15 hover:border-sky-400/50 px-4 py-2 rounded-lg
                     transition-all duration-200"
                 >
                   GitHub ↗
@@ -150,8 +151,9 @@ export default function About() {
                   href="https://linkedin.com/in/abdulsaboor-in"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[12px] font-medium text-slate-500 hover:text-slate-100
-                    border border-white/[0.07] hover:border-white/20 px-4 py-2 rounded-lg
+                  className="text-[12px] font-medium text-slate-200 hover:text-white
+                    bg-white/[0.05] hover:bg-white/[0.1]
+                    border border-white/15 hover:border-sky-400/50 px-4 py-2 rounded-lg
                     transition-all duration-200"
                 >
                   LinkedIn ↗

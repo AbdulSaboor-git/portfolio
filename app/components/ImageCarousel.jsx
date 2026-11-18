@@ -137,7 +137,7 @@ function Lightbox({ images, startIdx, onClose }) {
         </div>
       )}
 
-      {/* Swipe hint — mobile only */}
+      {/* Swipe hint - mobile only */}
       <p className="text-center text-[11px] text-slate-700 pb-3 flex-shrink-0 sm:hidden">
         swipe or tap outside to close
       </p>
@@ -223,7 +223,7 @@ export default function ImageCarousel({ images }) {
               <ChevronRight size={18} />
             </button>
 
-            {/* Dots — bigger tap targets */}
+            {/* Dots - bigger tap targets */}
             <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1 z-10">
               {images.map((_, i) => (
                 <button

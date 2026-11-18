@@ -13,7 +13,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="px-[clamp(20px,6vw,80px)] py-16 sm:py-20 md:py-28 border-t border-white/[0.04]"
+      className="px-[clamp(20px,6vw,80px)] py-16 sm:py-20 md:py-28 border-t border-white/[0.08]"
     >
       <div className="max-w-[1100px] mx-auto">
         <motion.div
@@ -28,7 +28,7 @@ export default function Projects() {
                 Work I&apos;m <span className="text-sky-400">proud of</span>
               </>
             }
-            subtitle="From AI-powered SaaS to polished client sites — built with intent, care, and an eye for production quality."
+            subtitle="From AI-powered SaaS to polished client sites - built with intent, care, and an eye for production quality."
           />
         </motion.div>
 
@@ -60,9 +60,10 @@ export default function Projects() {
             href="https://github.com/AbdulSaboor-git"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-[13px] font-mono text-slate-600
-              hover:text-slate-300 border border-white/[0.07] hover:border-white/30
-              rounded-full px-6 py-2.5 transition-all duration-250"
+            className="inline-flex items-center gap-2 text-[13px] font-mono text-slate-200
+              hover:text-white bg-white/[0.05] hover:bg-white/[0.1]
+              border border-white/15 hover:border-sky-400/50
+              rounded-xl px-6 py-2.5 transition-all duration-250"
           >
             ↗ more on GitHub
           </a>

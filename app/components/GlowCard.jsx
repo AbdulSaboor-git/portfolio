@@ -78,7 +78,7 @@ export default function GlowCard({
     setSpot((p) => ({ ...p, visible: false }));
   }, []);
 
-  // Build the resolved glow colour — optionally scale intensity
+  // Build the resolved glow colour - optionally scale intensity
   const resolvedGlow = (() => {
     if (disableGlow) return "transparent";
     if (glowIntensity === null) return glowColor;

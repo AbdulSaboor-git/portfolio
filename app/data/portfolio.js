@@ -80,7 +80,7 @@ export const PROJECTS = [
     name: "ResumeAI",
     // badge: "FYP · In Progress",
     tagline: "AI-powered resume & career SaaS platform",
-    desc: "A full-stack SaaS platform built as a Final Year Project — delivering intelligent resume tools powered by NLP, LLMs, and semantic search. Designed to help job seekers land roles faster with data-driven, explainable feedback.",
+    desc: "A full-stack SaaS platform built as a Final Year Project, delivering intelligent resume tools powered by NLP, LLMs, and semantic search. Designed to help job seekers land roles faster with data-driven, explainable feedback.",
     highlights: [
       "Multi-format resume parser achieving 90%+ parse accuracy via FastAPI + SpaCy",
       "Semantic skill-gap analysis using sentence-transformers with 95% cosine similarity matching",
@@ -150,7 +150,7 @@ export const PROJECTS = [
     num: "03",
     name: "Royal Aseel Farms",
     tagline: "Multi-seller e-commerce & farm marketplace",
-    desc: "A complete e-commerce marketplace for a poultry business — multiple sellers list products, buyers search and filter, and orders route through WhatsApp or email. Includes full admin and seller dashboards with 330+ commits of active development.",
+    desc: "A complete e-commerce marketplace for a poultry business - multiple sellers list products, buyers search and filter, and orders route through WhatsApp or email. Includes full admin and seller dashboards with 330+ commits of active development.",
     highlights: [
       "Multi-seller marketplace architecture with independent seller dashboards",
       "Advanced search, filter, and favourites system",
@@ -170,7 +170,7 @@ export const PROJECTS = [
     num: "04",
     name: "3P Solar Solutions",
     tagline: "Conversion-optimised company website",
-    desc: "A clean, modern website for a solar energy company. Built to drive enquiries through compelling service pages, a fast-loading responsive layout, and a simple contact pipeline — deployed and maintained on Vercel.",
+    desc: "A clean, modern website for a solar energy company. Built to drive enquiries through compelling service pages, a fast-loading responsive layout, and a simple contact pipeline, deployed and maintained on Vercel.",
     highlights: [
       "Conversion-focused landing page with clear CTAs",
       "Service showcase with detailed individual pages",
@@ -190,7 +190,7 @@ export const PROJECTS = [
     num: "05",
     name: "Calmify",
     tagline: "Wellness-focused web experience",
-    desc: "A thoughtfully designed wellness app centred on calm — serene visuals, gentle micro-animations, and an intentional UX that guides users toward mindful moments. A showcase of design-driven development.",
+    desc: "A thoughtfully designed wellness app centred on calm, serene visuals, gentle micro-animations, and an intentional UX that guides users toward mindful moments. A showcase of design-driven development.",
     highlights: [
       "Serene, calming visual language with muted palette",
       "Wellness-focused interaction and navigation patterns",
@@ -210,12 +210,12 @@ export const PROJECTS = [
     num: "06",
     name: "Snake Game",
     tagline: "Zero-dependency C++ console game",
-    desc: "A feature-complete Snake game built entirely in C++ — no game engine, no external libraries. Custom console renderer, full menu system, persistent high scores, and configurable difficulty. A testament to low-level problem solving.",
+    desc: "A feature-complete Snake game built entirely in C++ - no game engine, no external libraries. Custom console renderer, full menu system, persistent high scores, and configurable difficulty. A testament to low-level problem solving.",
     highlights: [
       "Custom console UI renderer built entirely from scratch",
       "Full game menu with settings and persistent high score tracking",
       "Configurable snake speed with multiple difficulty levels",
-      "Zero external dependencies — pure C++ logic and data structures",
+      "Zero external dependencies - pure C++ logic and data structures",
     ],
     tech: ["C++", "Console UI", "Algorithms", "Data Structures"],
     github: "https://github.com/AbdulSaboor-git/Snake-Game",

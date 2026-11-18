@@ -23,7 +23,7 @@ export default function Navbar() {
   const [active, setActive] = useState("");
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const panelRef = useRef(null);
+  const navRef = useRef(null);
 
   /* ── scroll spy ── */
   useEffect(() => {
@@ -42,16 +42,17 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  /* ── close panel on outside click ── */
+  /* ── close on outside click ── */
   useEffect(() => {
     if (!open) return;
     const handler = (e) => {
       if (
-        panelRef.current &&
-        !panelRef.current.contains(e.target) &&
+        navRef.current &&
+        !navRef.current.contains(e.target) &&
         !e.target.closest("#nav-hamburger")
-      )
+      ) {
         setOpen(false);
+      }
     };
     document.addEventListener("click", handler);
     return () => document.removeEventListener("click", handler);
@@ -67,7 +68,7 @@ export default function Navbar() {
   return (
     <>
       {/* ════════════════════════════════════════
-          DESKTOP — centred floating pill
+          DESKTOP - centred floating pill
       ════════════════════════════════════════ */}
       <motion.div
         initial={{ y: -60, opacity: 0 }}
@@ -79,8 +80,8 @@ export default function Navbar() {
           className={`flex items-center gap-1 px-3 py-2 rounded-full border transition-all duration-500
             ${
               scrolled
-                ? "bg-[#06080f]/80 backdrop-blur-2xl border-white/10 shadow-[0_8px_40px_rgba(0,0,0,0.55)]"
-                : "bg-[#06080f]/50 backdrop-blur-xl border-white/[0.07]"
+                ? "bg-[#0a0f1e]/95 backdrop-blur-2xl border-white/15 shadow-[0_8px_40px_rgba(0,0,0,0.6)]"
+                : "bg-[#0a0f1e]/80 backdrop-blur-xl border-white/12 shadow-[0_4px_24px_rgba(0,0,0,0.4)]"
             }`}
         >
           {NAV_LINKS.map((link) => {
@@ -96,7 +97,7 @@ export default function Navbar() {
                 {isActive && (
                   <motion.span
                     layoutId="pill-active"
-                    className="absolute inset-0 rounded-full bg-white/[0.08] border border-white/10"
+                    className="absolute inset-0 rounded-full bg-sky-400/15 border border-sky-400/35"
                     transition={{ type: "spring", stiffness: 380, damping: 32 }}
                   />
                 )}
@@ -104,12 +105,12 @@ export default function Navbar() {
                   <Icon
                     size={13}
                     className={`relative z-10 transition-colors duration-200
-                      ${isActive ? "text-slate-100" : "text-slate-600"} group-hover:text-slate-300`}
+                      ${isActive ? "text-sky-400" : "text-slate-400 group-hover:text-white"}`}
                   />
                 )}
                 <span
                   className={`relative z-10 transition-colors duration-200
-                  ${isActive ? "text-slate-100" : "text-slate-500 group-hover:text-slate-300"}`}
+                  ${isActive ? "text-white" : "text-slate-300 group-hover:text-white"}`}
                 >
                   {link}
                 </span>
@@ -120,123 +121,122 @@ export default function Navbar() {
       </motion.div>
 
       {/* ════════════════════════════════════════
-          MOBILE — hamburger top-left
-          Collapsed: slim icon-only pill
-          Open: full panel slides out rightward
+          MOBILE - morphing icon rail → full label menu
       ════════════════════════════════════════ */}
 
-      {/* Hamburger button — same position as before */}
+      {/* Subtle backdrop when expanded */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => setOpen(false)}
+            className="fixed inset-0 z-[57] bg-black/45 backdrop-blur-[2px] md:hidden"
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Hamburger toggle */}
       <button
         id="nav-hamburger"
         onClick={() => setOpen((o) => !o)}
         aria-label="Toggle menu"
+        aria-expanded={open}
         className={`fixed top-3 left-3 z-[60] md:hidden
-          w-9 h-9 flex items-center justify-center rounded-xl
-          border transition-all duration-300 
-          bg-[#06080f]/60 border-white/[0.07] text-slate-400 backdrop-blur-md
-          `}
+          w-11 h-9 flex items-center justify-center rounded-xl
+          border transition-all duration-300 backdrop-blur-md
+          shadow-[0_4px_16px_rgba(0,0,0,0.45)]
+          ${
+            open
+              ? "bg-[#0d1526] border-sky-400/45 text-sky-400"
+              : "bg-[#0a0f1e]/90 border-white/15 text-slate-200 hover:text-white hover:border-white/30"
+          }`}
       >
         <motion.div
-          animate={{ rotate: open ? 90 : 0, scale: open ? 0.9 : 1 }}
+          animate={{ rotate: open ? 90 : 0, scale: open ? 0.92 : 1 }}
           transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
         >
           {open ? <HiXMark size={18} /> : <HiBars3 size={18} />}
         </motion.div>
       </button>
 
-      {/*
-        Collapsed icon strip — always mounted, sits just below the hamburger.
-        Shows icons only; no text, no background panel. Fades out when open.
-      */}
-      <motion.div
+      {/* Single unified morphing nav rail */}
+      <motion.nav
+        ref={navRef}
+        aria-label="Mobile navigation"
+        initial={false}
         animate={{
-          opacity: open ? 0 : 1,
-          pointerEvents: open ? "none" : "auto",
+          width: open ? 184 : 44,
+          padding: open ? 8 : 4,
         }}
-        transition={{ duration: 0.18 }}
-        className="fixed top-[52px] left-3 z-[59] md:hidden flex flex-col gap-1"
+        transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+        className={`fixed top-[54px] left-3 z-[59] md:hidden flex flex-col gap-1.5 overflow-hidden
+          rounded-xl border backdrop-blur-xl transition-colors duration-300
+          ${
+            open
+              ? "opacity-80 bg-[#0a0f1e]/95 border-white/15 shadow-[0_14px_44px_rgba(0,0,0,0.75)]"
+              : "opacity-70 bg-[#0a0f1e]/85 border-white/15 shadow-[0_6px_24px_rgba(0,0,0,0.45)]"
+          }`}
       >
-        {NAV_LINKS.map((link) => {
+        {NAV_LINKS.map((link, i) => {
           const isActive = active === link.toLowerCase();
           const Icon = NAV_ICONS[link];
           return (
-            <button
+            <motion.button
               key={link}
+              layout
               onClick={() => scrollTo(link)}
               aria-label={link}
-              className={`relative w-9 h-9 flex items-center justify-center rounded-xl border
-                transition-all duration-200 cursor-pointer backdrop-blur-md
+              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+              className={`relative flex items-center h-9 rounded-xl border transition-colors duration-200 cursor-pointer
+                ${open ? "px-3 gap-3 w-full justify-start" : "px-0 w-9 justify-center"}
                 ${
                   isActive
-                    ? "border-sky-400/30 text-sky-400"
-                    : "border-white/[0.07] text-slate-500 hover:text-slate-300 hover:border-white/15"
+                    ? "bg-sky-400/15 border-sky-400/45 text-sky-400 shadow-[0_0_14px_rgba(56,189,248,0.16)]"
+                    : "bg-transparent border-transparent text-slate-300 hover:text-white hover:bg-white/[0.07]"
                 }`}
             >
-              {Icon && <Icon size={15} />}
-              {isActive && (
-                <span className="absolute top-1 right-1 w-1 h-1 rounded-full bg-sky-400" />
+              {Icon && (
+                <Icon
+                  size={15}
+                  className={`flex-shrink-0 transition-colors duration-200
+                    ${isActive ? "text-sky-400" : "text-slate-300"}`}
+                />
               )}
-            </button>
+
+              <AnimatePresence initial={false}>
+                {open && (
+                  <motion.span
+                    initial={{ opacity: 0, x: -6, width: 0 }}
+                    animate={{
+                      opacity: 1,
+                      x: 0,
+                      width: "auto",
+                      transition: {
+                        duration: 0.22,
+                        delay: i * 0.03,
+                        ease: [0.22, 1, 0.36, 1],
+                      },
+                    }}
+                    exit={{
+                      opacity: 0,
+                      x: -4,
+                      width: 0,
+                      transition: { duration: 0.14 },
+                    }}
+                    className={`text-[13px] font-medium whitespace-nowrap overflow-hidden
+                      ${isActive ? "text-sky-400" : "text-slate-200"}`}
+                  >
+                    {link}
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </motion.button>
           );
         })}
-      </motion.div>
-
-      {/*
-        Open panel — AnimatePresence so it mounts/unmounts cleanly.
-        Fixed position stays constant; only x + opacity animate.
-        Sits to the right of the hamburger, same top as before.
-      */}
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            key="mobile-panel"
-            ref={panelRef}
-            initial={{ x: -12, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: -12, opacity: 0 }}
-            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed top-[52px] left-3 z-[58] md:hidden
-              w-[190px] p-3 rounded-[20px] flex flex-col gap-1
-              bg-[#06080f]/10 backdrop-blur-lg
-              border border-white/[0.07] 
-              shadow-[0_0_0_1px_rgba(255,255,255,0.07),0_8px_32px_rgba(0,0,0,0.55)]"
-          >
-            {NAV_LINKS.map((link, i) => {
-              const isActive = active === link.toLowerCase();
-              const Icon = NAV_ICONS[link];
-              return (
-                <motion.button
-                  key={link}
-                  initial={{ x: -6, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{
-                    duration: 0.2,
-                    delay: i * 0.04,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                  onClick={() => scrollTo(link)}
-                  className={`flex items-center gap-3 w-full px-3 py-3 rounded-xl text-[13px]
-                    text-left cursor-pointer bg-transparent transition-all duration-200
-                    ${
-                      isActive
-                        ? "text-sky-400 border border-sky-400/30 bg-sky-400/[0.04]"
-                        : "text-slate-300 border border-transparent hover:text-white hover:bg-white/[0.05]"
-                    }`}
-                >
-                  {Icon && (
-                    <Icon
-                      size={16}
-                      className={`flex-shrink-0 transition-colors duration-200
-                        ${isActive ? "text-sky-400" : "text-slate-500"}`}
-                    />
-                  )}
-                  {link}
-                </motion.button>
-              );
-            })}
-          </motion.div>
-        )}
-      </AnimatePresence>
+      </motion.nav>
     </>
   );
 }
